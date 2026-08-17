@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mündl. Prüfung">
+<title>Mündliche Prüfung – Pflegefachmann Saarland 2026</title>
+<style>
+:root {
+  --bg: #F7F8FC;
+  --surface: #FFFFFF;
+  --text: #1C1C2E;
+  --muted: #6B7280;
+  --border: #E2E8F0;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+
+  --kb3: #3B5BDB;
+  --kb3-light: #EEF2FF;
+  --kb3-mid: #748FFC;
+
+  --kb4: #C92A2A;
+  --kb4-light: #FFF5F5;
+  --kb4-mid: #FA5252;
+
+  --kb5: #2F9E44;
+  --kb5-light: #EBFBEE;
+  --kb5-mid: #51CF66;
+
+  --active: var(--kb3);
+  --active-light: var(--kb3-light);
+  --active-mid: var(--kb3-mid);
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+#site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  flex-wrap: wrap;
+}
+
+.site-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--active);
+  flex: 1;
+  min-width: 120px;
+  letter-spacing: -0.01em;
+}
+
+.site-subtitle {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+#search-bar {
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 12px;
+  gap: 6px;
+  min-width: 180px;
+  transition: border-color .2s;
+}
+#search-bar:focus-within { border-color: var(--active); }
+#search-bar input {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  color: var(--text);
+  outline: none;
+  width: 140px;
+}
+#search-bar span { color: var(--muted); font-size: 14px; }
+
+/* ── TABS ── */
+.tabs {
+  display: flex;
+  gap: 0;
+  padding: 0 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-top: 1px solid var(--border);
+}
+.tabs::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  border: none;
+  background: transparent;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--muted);
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: color .2s, border-color .2s;
+  font-family: var(--font);
+}
+
+.tab-btn[data-tab="kb3"].active { color: var(--kb3); border-color: var(--kb3); }
+.tab-btn[data-tab="kb4"].active { color: var(--kb4); border-color: var(--kb4); }
+.tab-btn[data-tab="kb5"].active { color: var(--kb5); border-color: var(--kb5); }
+.tab-btn:not(.active):hover { color: var(--text); }
+
+/* ── LAYOUT ── */
+.app {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ── TOC ── */
+.toc {
+  position: sticky;
+  top: 100px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.toc-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.toc ul { list-style: none; }
+.toc li { margin: 1px 0; }
+.toc a {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: background .15s, color .15s;
+  line-height: 1.4;
+}
+.toc a:hover { background: var(--active-light); color: var(--active); }
+
+/* ── PANEL ── */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* ── SECTION ── */
+.section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 16px;
+  scroll-margin-top: 110px;
+  animation: fadeIn .3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.section h2 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.kb-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.kb3-badge { background: var(--kb3-light); color: var(--kb3); }
+.kb4-badge { background: var(--kb4-light); color: var(--kb4); }
+.kb5-badge { background: var(--kb5-light); color: var(--kb5); }
+
+.section h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--active);
+  margin: 14px 0 6px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.kb3-section h3 { color: var(--kb3); }
+.kb4-section h3 { color: var(--kb4); }
+.kb5-section h3 { color: var(--kb5); }
+
+.section ul {
+  list-style: none;
+  margin: 4px 0;
+}
+.section ul li {
+  padding: 3px 0 3px 16px;
+  position: relative;
+  font-size: 14px;
+}
+.section ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--active);
+  font-size: 11px;
+  top: 5px;
+}
+.kb3-section ul li::before { color: var(--kb3); }
+.kb4-section ul li::before { color: var(--kb4); }
+.kb5-section ul li::before { color: var(--kb5); }
+
+.section ul ul { margin-left: 12px; margin-top: 2px; }
+.section ul ul li::before { content: '–'; color: var(--muted); font-size: 12px; }
+
+.section p {
+  font-size: 14px;
+  margin: 6px 0;
+  color: var(--text);
+}
+
+/* ── TABLE ── */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 10px 0;
+}
+.tbl th {
+  background: var(--bg);
+  font-weight: 700;
+  text-align: left;
+  padding: 7px 10px;
+  border-bottom: 2px solid var(--border);
+  font-size: 12px;
+}
+.tbl td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.tbl tr:last-child td { border-bottom: none; }
+
+/* ── HIGHLIGHT BOX ── */
+.highlight {
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 13px;
+  margin: 10px 0;
+}
+.highlight-blue { background: var(--kb3-light); border-left: 4px solid var(--kb3); }
+.highlight-red { background: var(--kb4-light); border-left: 4px solid var(--kb4); }
+.highlight-green { background: var(--kb5-light); border-left: 4px solid var(--kb5); }
+
+strong { font-weight: 700; }
+
+/* ── SELF TEST ── */
+.self-test-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  cursor: pointer;
+  margin-top: 14px;
+  font-family: var(--font);
+  transition: all .2s;
+}
+.self-test-btn:hover { border-color: var(--active); color: var(--active); }
+.section.blurred .section-content { filter: blur(5px); user-select: none; }
+
+/* ── BACK LINK ── */
+.back {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: all .15s;
+}
+.back:hover { border-color: var(--active); color: var(--active); }
+
+/* ── SEARCH HIGHLIGHT ── */
+.search-hl { background: #FFF3CD; border-radius: 2px; }
+
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  z-index: 200;
+  transition: width .1s;
+}
+body[data-tab="kb3"] #progress-bar { background: var(--kb3); }
+body[data-tab="kb4"] #progress-bar { background: var(--kb4); }
+body[data-tab="kb5"] #progress-bar { background: var(--kb5); }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .app { grid-template-columns: 1fr; }
+  .toc { position: static; max-height: none; }
+  .toc-title { cursor: pointer; }
+  .toc ul { display: none; }
+  .toc.open ul { display: block; }
+}
+</style>
+</head>
+<body data-tab="kb3">
+<div id="progress-bar"></div>
+
+<header id="site-header">
+  <div class="header-top">
+    <div>
+      <div class="site-title">Mündliche Prüfung 2026</div>
+      <div class="site-subtitle">Pflegefachmann · Saarland · EFSA · KB III · IV · V</div>
+    </div>
+    <div id="search-bar">
+      <span>🔍</span>
+      <input type="text" id="search-input" placeholder="Suchen …" autocomplete="off">
+    </div>
+  </div>
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="kb3">KB III · Interprofessionell</button>
+    <button class="tab-btn" data-tab="kb4">KB IV · Recht &amp; Ethik</button>
+    <button class="tab-btn" data-tab="kb5">KB V · Wissenschaft</button>
+  </nav>
+</header>
+
+<div class="app">
+
+<!-- ══════════════ TOC ══════════════ -->
+<aside class="toc" id="toc-panel">
+  <div class="toc-title" id="toc-toggle">📋 Inhalt</div>
+  <div id="kb3-toc">
+    <ul>
+      <li><a href="#kb3-t1">Delegation &amp; vorbehaltene Tätigkeiten</a></li>
+      <li><a href="#kb3-t2">Berufsgruppen &amp; Rollen im Team</a></li>
+      <li><a href="#kb3-t3">10-R-Regel</a></li>
+      <li><a href="#kb3-t4">SBAR &amp; Übergabe</a></li>
+      <li><a href="#kb3-t5">Entlassungsmanagement</a></li>
+      <li><a href="#kb3-t6">Konfliktmanagement, CIRS &amp; Fehlerkultur</a></li>
+    </ul>
+  </div>
+  <div id="kb4-toc" style="display:none">
+    <ul>
+      <li><a href="#kb4-t1">BGB – Behandlungsvertrag &amp; Patientenrechte</a></li>
+      <li><a href="#kb4-t2">BGB – Patientenverfügung, Betreuung, FEM</a></li>
+      <li><a href="#kb4-t3">BGB – Sorgerecht &amp; Kindesschutz</a></li>
+      <li><a href="#kb4-t4">StGB – Haftung &amp; Strafrecht</a></li>
+      <li><a href="#kb4-t5">SGB V &amp; SGB XI</a></li>
+      <li><a href="#kb4-t6">Grundgesetz</a></li>
+      <li><a href="#kb4-t7">FEM – Freiheitseinschränkende Maßnahmen</a></li>
+      <li><a href="#kb4-t8">Patientenrechtegesetz &amp; BTM-Gesetz</a></li>
+      <li><a href="#kb4-t9">Pflege-Charta &amp; Qualitätssicherung</a></li>
+      <li><a href="#kb4-t10">Pflegegrade &amp; NBA</a></li>
+    </ul>
+  </div>
+  <div id="kb5-toc" style="display:none">
+    <ul>
+      <li><a href="#kb5-t1">Pflegetheorien kompakt</a></li>
+      <li><a href="#kb5-t2">ICN-Ethikkodex</a></li>
+      <li><a href="#kb5-t3">Bezugspflege / Primary Nursing / Funktionspflege</a></li>
+      <li><a href="#kb5-t4">Kinästhetik</a></li>
+      <li><a href="#kb5-t5">Basale Stimulation</a></li>
+      <li><a href="#kb5-t6">Bobath-Konzept</a></li>
+      <li><a href="#kb5-t7">Gewalt in der Pflege</a></li>
+      <li><a href="#kb5-t8">Selbstfürsorge &amp; Burn-out-Prävention</a></li>
+    </ul>
+  </div>
+</aside>
+
+<!-- ══════════════ KB III ══════════════ -->
+<main id="main-content">
+
+<div class="panel active" id="panel-kb3">
+
+<!-- KB3-T1 -->
+<section class="section kb3-section" id="kb3-t1">
+  <div class="section-header">
+    <h2>Delegation &amp; Vorbehaltene Tätigkeiten</h2>
+    <span class="kb-badge kb3-badge">KB III · §4 PflBG</span>
+  </div>
+  <div class="section-content">
+    <h3>Vorbehaltene Tätigkeiten nach §4 PflBG</h3>
+    <p>Nur Pflegefachpersonen dürfen folgende Tätigkeiten eigenverantwortlich durchführen:</p>
+    <ul>
+      <li>Erhebung und Feststellung des individuellen Pflegebedarfs (Assessment, Pflegediagnosen)</li>
+      <li>Organisation, Gestaltung und Steuerung des Pflegeprozesses</li>
+      <li>Analyse, Evaluation und Qualitätssicherung der Pflege</li>
+      <li>Beratung von Pflegebedürftigen und Angehörigen zu pflegerischen Maßnahmen</li>
+    </ul>
+    <div class="highlight highlight-blue">⚠️ Verbandswechsel ist <strong>keine</strong> vorbehaltene Tätigkeit – er kann delegiert werden!</div>
+
+    <h3>Delegation – Was ist erlaubt?</h3>
+    <table class="tbl">
+      <tr><th>Delegierbar</th><th>Nicht delegierbar</th></tr>
+      <tr><td>Grundpflege (Waschen, Lagern, Essen reichen)</td><td>Pflegeprozessschritte (Planung, Assessment, Evaluation)</td></tr>
+      <tr><td>Medikamentengabe (mit Einweisung &amp; Kontrolle)</td><td>Beratung im pflegerischen Sinn</td></tr>
+      <tr><td>Verbandswechsel (einfach)</td><td>Steuerung komplexer Pflegesituationen</td></tr>
+      <tr><td>Vitalzeichen messen</td><td>Qualitätssicherung der Pflege</td></tr>
+    </table>
+
+    <h3>Voraussetzungen für Delegation</h3>
+    <ul>
+      <li><strong>Eignung:</strong> Die Person muss die Fähigkeit zur Aufgabe besitzen</li>
+      <li><strong>Einweisung:</strong> Klare Anweisung und Erklärung der Aufgabe</li>
+      <li><strong>Kontrolle:</strong> Pflegefachkraft bleibt verantwortlich und kontrolliert</li>
+      <li><strong>Dokumentation:</strong> Delegierte Aufgaben müssen dokumentiert werden</li>
+    </ul>
+    <div class="highlight highlight-blue">Delegation entbindet nicht von der Verantwortung! Wer delegiert, bleibt übergeordnet verantwortlich.</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB3-T2 -->
+<section class="section kb3-section" id="kb3-t2">
+  <div class="section-header">
+    <h2>Berufsgruppen &amp; Rollen im Team</h2>
+    <span class="kb-badge kb3-badge">KB III · Teamarbeit</span>
+  </div>
+  <div class="section-content">
+    <h3>Interprofessionelles Team – Überblick</h3>
+    <table class="tbl">
+      <tr><th>Berufsgruppe</th><th>Hauptaufgaben</th><th>Schnittstelle zur Pflege</th></tr>
+      <tr><td><strong>Arzt/Ärztin</strong></td><td>Diagnose, Therapieanordnung, Aufklärung</td><td>Anordnungen ausführen, Beobachtungen melden</td></tr>
+      <tr><td><strong>Physiotherapie</strong></td><td>Mobilisation, Atemtherapie, Gangschule</td><td>Lagerung, Förderung zwischen Therapie</td></tr>
+      <tr><td><strong>Ergotherapie</strong></td><td>ADL-Training, Hilfsmittelversorgung</td><td>Alltagshandlungen fördern, Hilfsmittel einsetzen</td></tr>
+      <tr><td><strong>Logopädie</strong></td><td>Schluckdiagnostik, Sprachtherapie</td><td>Kostform, Aspirationsschutz bei Mahlzeiten</td></tr>
+      <tr><td><strong>Sozialdienst</strong></td><td>Entlassungsplanung, Sozialberatung</td><td>Früh informieren, Patientenwünsche weitergeben</td></tr>
+      <tr><td><strong>Diätassistenz</strong></td><td>Ernährungsberatung, Kostplanung</td><td>Ernährungsstatus beobachten, dokumentieren</td></tr>
+      <tr><td><strong>Seelsorge</strong></td><td>Spirituelle Begleitung, Krisenintervention</td><td>Bei Bedarf frühzeitig hinzuziehen</td></tr>
+      <tr><td><strong>Pflegehilfskräfte</strong></td><td>Grundpflege (delegiert), hauswirtschaftl. Aufgaben</td><td>Anleitung, Kontrolle, Unterstützung</td></tr>
+    </table>
+
+    <h3>Rollen im Pflegeteam</h3>
+    <ul>
+      <li><strong>Pflegefachkraft:</strong> Verantwortlich für Pflegeprozess, vorbehaltene Tätigkeiten, Teamkoordination</li>
+      <li><strong>Praxisanleiterin:</strong> Anleitung von Auszubildenden, Lernbegleitung</li>
+      <li><strong>Pflegedienstleitung:</strong> Dienstplanung, Qualitätssicherung, Personalführung</li>
+      <li><strong>Stationsleitung:</strong> Organisationsverantwortung, Teamkoordination</li>
+    </ul>
+
+    <h3>Kommunikation im interprofessionellen Team</h3>
+    <ul>
+      <li>Visite: Gemeinsame Fallbesprechung – Pflege bringt Pflegeperspektive aktiv ein</li>
+      <li>Fallkonferenz: Interdisziplinäre Beratung komplexer Situationen</li>
+      <li>Teambesprechung: Regelmäßiger Austausch, CIRS-Fälle besprechen</li>
+      <li>Schriftlich: Pflegebericht, Übergabe, Arztbriefe</li>
+    </ul>
+    <div class="highlight highlight-blue">Augenhöhe! Keine Berufsgruppe ist wichtiger als die andere – alle verfolgen das gleiche Ziel: bestmögliche Versorgung des Patienten.</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB3-T3 -->
+<section class="section kb3-section" id="kb3-t3">
+  <div class="section-header">
+    <h2>10-R-Regel</h2>
+    <span class="kb-badge kb3-badge">KB III · Medikamentensicherheit</span>
+  </div>
+  <div class="section-content">
+    <div class="highlight highlight-blue">⚠️ Die EFSA-Schule verwendet die <strong>10-R-Regel</strong> (nicht die ältere 6-R-Regel!)</div>
+    <h3>Die 10 R im Überblick</h3>
+    <table class="tbl">
+      <tr><th>#</th><th>Regel</th><th>Was prüfe ich?</th></tr>
+      <tr><td><strong>R1</strong></td><td>Richtiger Patient</td><td>Namensband, Patientenidentifikation, aktive Abfrage</td></tr>
+      <tr><td><strong>R2</strong></td><td>Richtiges Medikament</td><td>Handelsname ≠ Wirkstoff! Genau vergleichen mit Anordnung</td></tr>
+      <tr><td><strong>R3</strong></td><td>Richtige Dosis</td><td>Einheit beachten (mg, µg, IE!), Berechnung prüfen</td></tr>
+      <tr><td><strong>R4</strong></td><td>Richtige Darreichungsform</td><td>Tablette / Tropfen / Injektion / Pflaster – wie angeordnet?</td></tr>
+      <tr><td><strong>R5</strong></td><td>Richtiger Applikationsweg</td><td>Oral, i.v., s.c., i.m., transdermal, inhalativ …</td></tr>
+      <tr><td><strong>R6</strong></td><td>Richtiger Zeitpunkt</td><td>Nüchtern (L-Thyroxin!), vor/zu/nach dem Essen, Intervall</td></tr>
+      <tr><td><strong>R7</strong></td><td>Richtige Lagerung</td><td>Kühlkette (Insulin!), Lichtschutz, Temperaturbereich</td></tr>
+      <tr><td><strong>R8</strong></td><td>Richtiges Verfallsdatum</td><td>Stets prüfen, abgelaufene Medikamente nicht verwenden</td></tr>
+      <tr><td><strong>R9</strong></td><td>Richtige Dokumentation</td><td>Erst dokumentieren NACH der Gabe, nicht vorher!</td></tr>
+      <tr><td><strong>R10</strong></td><td>Richtige Aufklärung</td><td>Patient informiert über Medikament, Wirkung, NW; Einwilligung</td></tr>
+    </table>
+
+    <h3>Besonderheiten</h3>
+    <ul>
+      <li><strong>L-Thyroxin:</strong> ≥30 Min. vor dem Frühstück und anderen Medikamenten</li>
+      <li><strong>Apidra (Bolusinsulin):</strong> VOR dem Essen verabreichen (nicht danach!)</li>
+      <li><strong>ASS 100 mg:</strong> Prophylaxe täglich | ASS 500 mg i.v.: Notfall (Herzinfarkt)</li>
+      <li><strong>Opioide:</strong> Immer Laxans mitverordnen! BTM-Dokumentation beachten</li>
+      <li><strong>Ramipril (ACE-Hemmer):</strong> Kein Bradykardie-Risiko! (→ das ist Betablocker!)</li>
+    </ul>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB3-T4 -->
+<section class="section kb3-section" id="kb3-t4">
+  <div class="section-header">
+    <h2>SBAR &amp; Übergabe</h2>
+    <span class="kb-badge kb3-badge">KB III · Kommunikation</span>
+  </div>
+  <div class="section-content">
+    <h3>SBAR-Schema</h3>
+    <table class="tbl">
+      <tr><th>Buchstabe</th><th>Bedeutung</th><th>Beispiel</th></tr>
+      <tr><td><strong>S</strong></td><td>Situation – Was ist jetzt das Problem?</td><td>„Herr M., 72 J., Zimmer 4, hat seit 30 Min. starke Brustschmerzen."</td></tr>
+      <tr><td><strong>B</strong></td><td>Background – Relevante Vorgeschichte</td><td>„Bekannte KHK, Herzinfarkt 2021, nimmt ASS + Ramipril."</td></tr>
+      <tr><td><strong>A</strong></td><td>Assessment – Meine Einschätzung</td><td>„Ich vermute erneuten Herzinfarkt. RR 90/60, Puls 110, kaltschweißig."</td></tr>
+      <tr><td><strong>R</strong></td><td>Recommendation – Was brauche ich?</td><td>„Bitte kommen Sie sofort. Soll ich den Notarzt rufen? EKG anlegen?"</td></tr>
+    </table>
+
+    <h3>Einsatzbereiche SBAR</h3>
+    <ul>
+      <li>Telefonbericht an den Arzt (Notfall, Befundübermittlung)</li>
+      <li>Pflegeübergabe (Schichtwechsel)</li>
+      <li>Verlegungsberichte (Station → Station, Krankenhaus → Reha)</li>
+      <li>Interprofessionelle Übergabe (Pflege → Physiotherapie)</li>
+    </ul>
+
+    <h3>Strukturierte Pflegeübergabe</h3>
+    <ul>
+      <li>Patientenname, Alter, Zimmer, Diagnose</li>
+      <li>Aktueller Pflegestatus (Bewusstsein, Mobilität, Haut, Ausscheidung)</li>
+      <li>Besonderheiten der letzten Schicht (Ereignisse, Veränderungen)</li>
+      <li>Anstehende Maßnahmen / Aufgaben für die nächste Schicht</li>
+      <li>Medikamente, Verbände, Termine</li>
+    </ul>
+
+    <h3>SAMPLER (Notfall)</h3>
+    <ul>
+      <li><strong>S</strong> – Symptome (Was klagt der Patient?)</li>
+      <li><strong>A</strong> – Allergien</li>
+      <li><strong>M</strong> – Medikamente (aktuelle Einnahme)</li>
+      <li><strong>P</strong> – Patientenvorgeschichte / Erkrankungen</li>
+      <li><strong>L</strong> – Letzte Mahlzeit / Flüssigkeit</li>
+      <li><strong>E</strong> – Ereignis / Auslöser (was ist passiert?)</li>
+      <li><strong>R</strong> – Risikofaktoren</li>
+    </ul>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB3-T5 -->
+<section class="section kb3-section" id="kb3-t5">
+  <div class="section-header">
+    <h2>Entlassungsmanagement</h2>
+    <span class="kb-badge kb3-badge">KB III · §39 SGB V</span>
+  </div>
+  <div class="section-content">
+    <h3>Definition &amp; Ziel</h3>
+    <p>Entlassungsmanagement = systematische Planung der Überleitung von der stationären in die ambulante oder weiterführende Versorgung. Ziel: sichere, lückenlose, patientenorientierte Weiterversorgung ohne Versorgungsbrüche.</p>
+    <p><strong>Rechtliche Grundlage:</strong> §39 Abs. 1a SGB V (Anspruch auf Entlassmanagement im Krankenhaus) + Nationaler Expertenstandard Entlassungsmanagement (DNQP)</p>
+
+    <h3>Prozess – 5 Schritte</h3>
+    <table class="tbl">
+      <tr><th>Schritt</th><th>Inhalt</th><th>Zeitpunkt</th></tr>
+      <tr><td><strong>1. Assessment</strong></td><td>Entlassungsrisiko erkennen (BRASS-Index), Pflegebedarf einschätzen</td><td>Bei Aufnahme!</td></tr>
+      <tr><td><strong>2. Planung</strong></td><td>Wohin? (Zuhause, Reha, Pflegeheim, amb. Pflege) – gemeinsam mit Patient/Angehörigen</td><td>Früh im Verlauf</td></tr>
+      <tr><td><strong>3. Koordination</strong></td><td>Sozialdienst, Pflegestützpunkt, ambulanter Pflegedienst, Hilfsmittel, Wohnraumanpassung</td><td>Kontinuierlich</td></tr>
+      <tr><td><strong>4. Information</strong></td><td>Patient + Angehörige umfassend informieren und schulen (Medikamente, Verbände, Hilfsmittel)</td><td>Vor Entlassung</td></tr>
+      <tr><td><strong>5. Entlassbrief</strong></td><td>Diagnosen, Medikamente, Pflegebedarf, Kontakte, Termine weitergeben</td><td>Am Entlassungstag</td></tr>
+    </table>
+
+    <h3>Beteiligte Berufsgruppen</h3>
+    <ul>
+      <li>Pflege: Pflegebedarf einschätzen, koordinieren, schulen</li>
+      <li>Arzt: Entlassbrief, Diagnosen, Medikamentenpläne</li>
+      <li>Sozialdienst: Sozialrechtliche Beratung, Einleitung von Pflegeleistungen (SGB XI)</li>
+      <li>Physiotherapie / Ergotherapie: Hilfsmittel, Angehörigenschulung</li>
+    </ul>
+
+    <h3>Wichtige Instrumente</h3>
+    <ul>
+      <li><strong>BRASS-Index:</strong> Einschätzung des Entlassungsrisikos (Alter, Pflegestatus, Mobilität, Diagnosen)</li>
+      <li><strong>Pflegeüberleitung:</strong> Schriftliche Weitergabe des Pflegebedarfs an die aufnehmende Einrichtung</li>
+      <li><strong>Pflegestützpunkte:</strong> Koordinationsstellen nach §7c SGB XI</li>
+    </ul>
+    <div class="highlight highlight-blue">Entlassungsmanagement beginnt am Tag der Aufnahme – nicht erst kurz vor der Entlassung!</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB3-T6 -->
+<section class="section kb3-section" id="kb3-t6">
+  <div class="section-header">
+    <h2>Konfliktmanagement, CIRS &amp; Fehlerkultur</h2>
+    <span class="kb-badge kb3-badge">KB III · Qualität &amp; Sicherheit</span>
+  </div>
+  <div class="section-content">
+    <h3>Konflikte im Team</h3>
+    <ul>
+      <li><strong>Sachkonflikt:</strong> Unterschiedliche Meinungen zu Inhalten, Vorgehensweisen</li>
+      <li><strong>Beziehungskonflikt:</strong> Persönliche Spannungen, unterschiedliche Werte</li>
+      <li><strong>Rollenkonflikt:</strong> Unklare Zuständigkeiten, Kompetenzüberschneidungen</li>
+    </ul>
+
+    <h3>Konfliktlösung – Strategien</h3>
+    <ul>
+      <li><strong>Deeskalation:</strong> Ruhig bleiben, Situation nicht eskalieren lassen</li>
+      <li><strong>Aktives Zuhören:</strong> Sichtweise des anderen wirklich verstehen</li>
+      <li><strong>Mediation:</strong> Neutrale dritte Person vermittelt</li>
+      <li><strong>Supervision:</strong> Professionelle externe Begleitung des Teams</li>
+      <li><strong>Teambesprechung:</strong> Strukturierter gemeinsamer Austausch</li>
+    </ul>
+
+    <h3>CIRS – Critical Incident Reporting System</h3>
+    <p>Anonymes Meldesystem für <strong>kritische Ereignisse und Beinaheunfälle</strong> im Gesundheitswesen.</p>
+    <ul>
+      <li><strong>Anonymität:</strong> Meldungen sind anonym – kein Name wird veröffentlicht</li>
+      <li><strong>Sanktionsfreiheit:</strong> Keine Bestrafung für ehrliche Meldungen</li>
+      <li><strong>Vertraulichkeit:</strong> Informationen werden nicht an Behörden weitergegeben</li>
+      <li><strong>Lernorientierung:</strong> Ziel ist Systemverbesserung, nicht Schuldzuweisung</li>
+    </ul>
+
+    <h3>Schweizer-Käse-Modell (James Reason)</h3>
+    <p>Fehler entstehen nicht durch eine einzelne Person, sondern durch <strong>mehrere gleichzeitige Lücken</strong> im System (wie Löcher in mehreren Käsescheiben, die sich ausnahmsweise decken).</p>
+    <ul>
+      <li>Konsequenz: Systemfehler beheben, nicht Individuen bestrafen</li>
+      <li>Barrieren stärken: Checklisten, Doppelkontrollen, Standards</li>
+    </ul>
+
+    <h3>Offene Fehlerkultur</h3>
+    <ul>
+      <li>Fehler offen ansprechen ohne Angst vor Konsequenzen</li>
+      <li>„Beinahe-Unfälle" melden und besprechen</li>
+      <li>Regelmäßige Fallbesprechungen und Qualitätszirkel</li>
+      <li>Team-Timeout: Wer Sicherheitsbedenken hat, darf stoppen</li>
+      <li>Führung lebt Fehlerkultur vor – Vorgesetzte melden eigene Fehler</li>
+    </ul>
+    <div class="highlight highlight-blue">Merke: Wer Fehler meldet, schützt den nächsten Patienten. Fehlerkultur ist Patientensicherheit!</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+</div><!-- /panel-kb3 -->
+
+<!-- ══════════════ KB IV ══════════════ -->
+<div class="panel" id="panel-kb4">
+
+<!-- KB4-T1 -->
+<section class="section kb4-section" id="kb4-t1">
+  <div class="section-header">
+    <h2>BGB – Behandlungsvertrag &amp; Patientenrechte</h2>
+    <span class="kb-badge kb4-badge">KB IV · §630a–g BGB</span>
+  </div>
+  <div class="section-content">
+    <table class="tbl">
+      <tr><th>Paragraph</th><th>Inhalt</th><th>Pflegerische Relevanz</th></tr>
+      <tr><td><strong>§630a BGB</strong></td><td>Behandlungsvertrag – zivilrechtlicher Vertrag, Pflicht zur sorgfältigen Behandlung nach medizinischem Standard</td><td>Pflegerisches Handeln muss dem professionellen Standard entsprechen</td></tr>
+      <tr><td><strong>§630d BGB</strong></td><td>Einwilligung – jede Maßnahme bedarf der Einwilligung des einwilligungsfähigen Patienten</td><td>Auch Körperwäsche, Injektionen brauchen Einwilligung! Bei Verweigerung: Maßnahme unterlassen</td></tr>
+      <tr><td><strong>§630e BGB</strong></td><td>Aufklärungspflicht – mündlich, verständlich, vor dem Eingriff; über Diagnose, Risiken, Alternativen</td><td>Pflege klärt über pflegerische Maßnahmen auf; Arzt über medizinische Eingriffe</td></tr>
+      <tr><td><strong>§630f BGB</strong></td><td>Dokumentationspflicht – vollständig, zeitnah, dauerhaft; mindestens 10 Jahre aufbewahren</td><td>Nachträgliche Änderungen = §267 StGB (Urkundenfälschung)! Unleserlich = Beweislastumkehr</td></tr>
+      <tr><td><strong>§630g BGB</strong></td><td>Einsichtsrecht – Patient hat Recht auf Einsicht in seine Krankenunterlagen, Kopien auf Wunsch</td><td>Keine Verweigerung! Ggf. Kosten für Kopien zulässig</td></tr>
+      <tr><td><strong>§276 BGB</strong></td><td>Fahrlässigkeit / Verschulden – Haftung bei Sorgfaltspflichtverletzung</td><td>Pflegefehler durch Unachtsamkeit → zivilrechtliche Haftung</td></tr>
+      <tr><td><strong>§280 BGB</strong></td><td>Schadensersatz bei Pflichtverletzung – Patient kann Schäden einklagen</td><td>Behandlungsfehler → Schadensersatzpflicht des Trägers</td></tr>
+    </table>
+    <div class="highlight highlight-red">Bei grobem Behandlungsfehler: <strong>Beweislastumkehr!</strong> Der Behandler muss beweisen, dass der Fehler nicht ursächlich für den Schaden war.</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB4-T2 -->
+<section class="section kb4-section" id="kb4-t2">
+  <div class="section-header">
+    <h2>BGB – Patientenverfügung, Betreuung &amp; FEM</h2>
+    <span class="kb-badge kb4-badge">KB IV · §1827, §1358, §1896, §1906 BGB</span>
+  </div>
+  <div class="section-content">
+    <table class="tbl">
+      <tr><th>Paragraph</th><th>Inhalt</th><th>Wichtig zu wissen</th></tr>
+      <tr><td><strong>§1827 BGB</strong></td><td>Patientenverfügung – schriftliche Willensbekundung für zukünftige Behandlungssituationen bei Einwilligungsunfähigkeit</td><td>Wird erst wirksam bei Einwilligungsunfähigkeit! Familie hat KEIN automatisches Entscheidungsrecht!</td></tr>
+      <tr><td><strong>§1358 BGB</strong></td><td>Ehegattenvertretungsrecht – seit 2023; Ehegatte/eingetr. Lebenspartner darf maximal 6 Wochen für einwilligungsunfähigen Partner entscheiden</td><td>Nur wenn kein Betreuer und keine Vorsorgevollmacht vorhanden. Zeitlich begrenzt!</td></tr>
+      <tr><td><strong>§1896 BGB</strong></td><td>Rechtliche Betreuung – Gericht bestellt Betreuer für einwilligungsunfähige Erwachsene</td><td>Betreuer entscheidet NUR in zugewiesenen Aufgabenkreisen. Kein Freibrief für alle Entscheidungen!</td></tr>
+      <tr><td><strong>§1906 BGB</strong></td><td>FEM bei Betreuten – Fixierung, Gitter, Sedierung nur mit Genehmigung des Betreuungsgerichts</td><td>Gilt für Patienten MIT Betreuer. Genehmigung + regelmäßige Überprüfung!</td></tr>
+      <tr><td><strong>§1906a BGB</strong></td><td>FEM bei Einwilligungsfähigen – auch einwilligungsfähige Personen können in FEM einwilligen, aber nur unter strengen Bedingungen</td><td>Patient muss informiert und einwilligen; trotzdem ärztliche Anordnung + Dokumentation!</td></tr>
+    </table>
+    <div class="highlight highlight-red">Prüfungsfall: Die Familie will eine Behandlung ablehnen oder einfordern → §1827 BGB prüfen! Hat der Patient eine Patientenverfügung? Greift sie in dieser Situation? Wer ist rechtlich zuständig?</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB4-T3 -->
+<section class="section kb4-section" id="kb4-t3">
+  <div class="section-header">
+    <h2>BGB – Sorgerecht &amp; Kindesschutz</h2>
+    <span class="kb-badge kb4-badge">KB IV · §1626 ff, §1666 BGB</span>
+  </div>
+  <div class="section-content">
+    <table class="tbl">
+      <tr><th>Paragraph</th><th>Inhalt</th><th>Pflegerische Relevanz</th></tr>
+      <tr><td><strong>§1626 BGB</strong></td><td>Elterliche Sorge – Eltern haben gemeinsam Personensorge (Gesundheitsfürsorge, Aufenthaltsbestimmung) und Vermögenssorge</td><td>Bei Behandlung von Minderjährigen: beide Elternteile müssen bei schwerwiegenden Eingriffen einwilligen</td></tr>
+      <tr><td><strong>§1627 BGB</strong></td><td>Ausübung der elterlichen Sorge – im gegenseitigen Einvernehmen, zum Wohl des Kindes</td><td>Elternteile uneinig → kein Eingriff bei nicht dringlichem Fall; bei Notfall: Kindeswohl entscheidet</td></tr>
+      <tr><td><strong>§1666 BGB</strong></td><td>Kindeswohlgefährdung – Gericht kann in Sorgerecht eingreifen wenn körperliche, geistige oder seelische Gefährdung vorliegt</td><td>Pflegefachkraft muss Verdacht melden! (intern + Jugendamt §8a SGB VIII)</td></tr>
+    </table>
+
+    <h3>Kindeswohlgefährdung – Pflegerisches Handeln</h3>
+    <ul>
+      <li>Anzeichen wahrnehmen: Verletzungen, Verhaltensänderungen, Angst vor Eltern, Vernachlässigung</li>
+      <li>Dokumentieren: objektiv, ohne Interpretation, mit Datum und Uhrzeit</li>
+      <li>Interne Meldung: Vorgesetzte / Kinderschutzbeauftragte informieren</li>
+      <li>Jugendamt einschalten: §8a SGB VIII – Schutzauftrag bei Kindeswohlgefährdung</li>
+      <li>Schweigepflicht (§203 StGB) entbindet NICHT von der Meldepflicht bei Gefährdung!</li>
+    </ul>
+
+    <h3>Altersabhängige Einwilligung</h3>
+    <ul>
+      <li>Unter 14 Jahre: Eltern entscheiden für das Kind</li>
+      <li>14–16 Jahre: Reife prüfen – zunehmend eigenes Mitspracherecht</li>
+      <li>Ab 16 Jahre: Bei vorliegender Einsichtsfähigkeit kann das Kind selbst einwilligen</li>
+    </ul>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB4-T4 -->
+<section class="section kb4-section" id="kb4-t4">
+  <div class="section-header">
+    <h2>StGB – Haftung &amp; Strafrecht in der Pflege</h2>
+    <span class="kb-badge kb4-badge">KB IV · StGB</span>
+  </div>
+  <div class="section-content">
+    <table class="tbl">
+      <tr><th>Paragraph</th><th>Straftatbestand</th><th>Pflegerisches Beispiel</th></tr>
+      <tr><td><strong>§203 StGB</strong></td><td>Verletzung der Schweigepflicht – Weitergabe von Patientengeheimnissen ohne Einwilligung</td><td>Diagnose an Arbeitgeber weitergeben, Flurgespräche über Patienten, unbefugte Akteneinsicht</td></tr>
+      <tr><td><strong>§222 StGB</strong></td><td>Fahrlässige Tötung – unbeabsichtigter Tod durch Sorgfaltspflichtverletzung</td><td>Schwerer Medikationsfehler, Sturz durch mangelnde Sicherung → Tod des Patienten</td></tr>
+      <tr><td><strong>§223 StGB</strong></td><td>Körperverletzung – jede Behandlung ohne Einwilligung</td><td>Injektion gegen den Willen, Waschen ohne Zustimmung, Fixierung ohne Grundlage</td></tr>
+      <tr><td><strong>§229 StGB</strong></td><td>Fahrlässige Körperverletzung – Verletzung durch Unachtsamkeit</td><td>Sturz durch fehlende Sicherung, falsches Lagern → Dekubitus, Verbandswechselfehler</td></tr>
+      <tr><td><strong>§239 StGB</strong></td><td>Freiheitsberaubung – Einschränkung der Bewegungsfreiheit ohne Rechtsgrundlage</td><td>Bettgitter ohne Betreuungsgerichtsbeschluss, abgesperrte Zimmertür, Fixierung ohne Anordnung</td></tr>
+      <tr><td><strong>§267 StGB</strong></td><td>Urkundenfälschung – Manipulation von Dokumenten</td><td>Pflegebericht nachträglich ändern, fremde Unterschrift fälschen, nicht durchgeführte Maßnahmen dokumentieren</td></tr>
+      <tr><td><strong>§323c StGB</strong></td><td>Unterlassene Hilfeleistung – Pflicht zur Hilfe in Notfallsituationen</td><td>Bewusstlosen Patienten ignorieren, Notruf trotz offensichtlicher Notlage nicht absetzen</td></tr>
+    </table>
+
+    <h3>Ausnahmen §203 StGB (Schweigepflicht)</h3>
+    <ul>
+      <li>Ausdrückliche Einwilligung des Patienten</li>
+      <li>Gesetzliche Meldepflichten (Infektionsschutzgesetz, Kinderschutz §8a SGB VIII)</li>
+      <li>Rechtfertigende Notstandssituation (§34 StGB)</li>
+      <li>Weitergabe innerhalb des Behandlungsteams (berufliche Notwendigkeit)</li>
+    </ul>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB4-T5 -->
+<section class="section kb4-section" id="kb4-t5">
+  <div class="section-header">
+    <h2>SGB V &amp; SGB XI – Sozialgesetzbücher</h2>
+    <span class="kb-badge kb4-badge">KB IV · Sozialrecht</span>
+  </div>
+  <div class="section-content">
+    <h3>SGB V – Gesetzliche Krankenversicherung</h3>
+    <table class="tbl">
+      <tr><th>Paragraph</th><th>Inhalt</th></tr>
+      <tr><td><strong>§20 SGB V</strong></td><td>Prävention und Gesundheitsförderung – Krankenkassen fördern präventive Maßnahmen</td></tr>
+      <tr><td><strong>§37b SGB V</strong></td><td>SAPV (Spezialisierte Ambulante Palliativversorgung) – für Schwerstkranke mit komplexem Bedarf zu Hause oder im Pflegeheim</td></tr>
+      <tr><td><strong>§39 SGB V</strong></td><td>Krankenhausbehandlung + Anspruch auf Entlassungsmanagement (§39 Abs. 1a)</td></tr>
+    </table>
+
+    <h3>SGB XI – Soziale Pflegeversicherung</h3>
+    <table class="tbl">
+      <tr><th>Paragraph</th><th>Inhalt</th></tr>
+      <tr><td><strong>§14/§15 SGB XI</strong></td><td>Definition Pflegebedürftigkeit + Einstufung in Pflegegrade 1–5 nach NBA-Punkten</td></tr>
+      <tr><td><strong>§7a SGB XI</strong></td><td>Pflegeberatung – Anspruch auf individuelle Pflegeberatung durch Pflegeberater/Pflegestützpunkte</td></tr>
+      <tr><td><strong>§36 SGB XI</strong></td><td>Pflegesachleistungen – ambulante Pflege durch zugelassenen Pflegedienst</td></tr>
+      <tr><td><strong>§37 SGB XI</strong></td><td>Pflegegeld – für selbst organisierte Pflege (durch Angehörige)</td></tr>
+      <tr><td><strong>§43 SGB XI</strong></td><td>Vollstationäre Pflege – Leistungen des Pflegeheims</td></tr>
+    </table>
+
+    <h3>SGB VIII – Kinder &amp; Jugendhilfe</h3>
+    <ul>
+      <li><strong>§8a SGB VIII:</strong> Schutzauftrag bei Kindeswohlgefährdung – Jugendamt muss tätig werden, Fachkräfte müssen melden</li>
+    </ul>
+    <div class="highlight highlight-red">Merke: §7a SGB XI = Pflegeberatung · §37b SGB V = SAPV · §8a SGB VIII = Kinderschutz</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB4-T6 -->
+<section class="section kb4-section" id="kb4-t6">
+  <div class="section-header">
+    <h2>Grundgesetz – Relevante Artikel</h2>
+    <span class="kb-badge kb4-badge">KB IV · GG</span>
+  </div>
+  <div class="section-content">
+    <table class="tbl">
+      <tr><th>Artikel</th><th>Inhalt</th><th>Pflegerische Bedeutung</th></tr>
+      <tr><td><strong>Art. 1 GG</strong></td><td>Menschenwürde – „Die Würde des Menschen ist unantastbar. Sie zu achten und zu schützen ist Verpflichtung aller staatlichen Gewalt."</td><td>Basis aller Patientenrechte. Keine entwürdigende Pflege, keine Depersonalisierung. Absolut und unveräußerlich!</td></tr>
+      <tr><td><strong>Art. 2 GG</strong></td><td>Persönliche Freiheit – Recht auf freie Entfaltung (Abs. 1) + Recht auf körperliche Unversehrtheit und Freiheit der Person (Abs. 2)</td><td>Grundlage für Einwilligungspflicht; Recht auf Ablehnung von Behandlungen; FEM = Eingriff in Art. 2!</td></tr>
+      <tr><td><strong>Art. 3 GG</strong></td><td>Gleichheitsgrundsatz – alle Menschen vor dem Gesetz gleich; Diskriminierungsverbot (Geschlecht, Abstammung, Rasse, Sprache, Religion, Behinderung)</td><td>Gleichbehandlung aller Patienten unabhängig von Herkunft, Religion, Versicherungsstatus</td></tr>
+      <tr><td><strong>Art. 4 GG</strong></td><td>Glaubens- und Gewissensfreiheit – Recht auf freie Religionsausübung</td><td>Patient lehnt Bluttransfusion ab (Zeuge Jehovas) → muss respektiert werden! Pflegekraft: Gewissensfreiheit bei ethischen Konflikten</td></tr>
+      <tr><td><strong>Art. 13 GG</strong></td><td>Unverletzlichkeit der Wohnung – Wohnung ist Schutzraum, kein Zutritt ohne Erlaubnis</td><td>Ambulante Pflege: Wohnung des Patienten ist sein privater Raum → Zutritt nur mit Erlaubnis; Klingeln, warten, anklopfen</td></tr>
+    </table>
+    <div class="highlight highlight-red">Art. 1 GG ist das Fundament aller weiteren Grundrechte und des gesamten Pflegehandelns. Er steht an erster Stelle – kein Zufall!</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB4-T7 -->
+<section class="section kb4-section" id="kb4-t7">
+  <div class="section-header">
+    <h2>FEM – Freiheitseinschränkende Maßnahmen</h2>
+    <span class="kb-badge kb4-badge">KB IV · §1906 BGB · §239 StGB</span>
+  </div>
+  <div class="section-content">
+    <h3>Definition &amp; Beispiele</h3>
+    <p>FEM sind alle Maßnahmen, die die Bewegungsfreiheit einer Person ohne deren freiwillige Zustimmung einschränken.</p>
+    <ul>
+      <li>Mechanisch: Bettgitter, Fixiergurte, Steckbrett am Rollstuhl, Tisch vor dem Rollstuhl</li>
+      <li>Räumlich: Abgesperrte Türen, Wohnbereich abgeriegelt</li>
+      <li>Medikamentös: Sedierung zur Ruhigstellung (ohne therapeutischen Zweck)</li>
+      <li>Elektronisch: Weglaufmeldesystem (wenn Patient nicht eingewilligt hat)</li>
+    </ul>
+
+    <h3>Rechtliche Grundlagen</h3>
+    <ul>
+      <li><strong>§1906 BGB:</strong> FEM bei Betreuten → Genehmigung des Betreuungsgerichts nötig</li>
+      <li><strong>§239 StGB:</strong> FEM ohne Genehmigung = Freiheitsberaubung (Straftat!)</li>
+      <li><strong>Art. 2 GG:</strong> Eingriff in das Recht auf persönliche Freiheit</li>
+    </ul>
+
+    <h3>Wann sind FEM erlaubt?</h3>
+    <ul>
+      <li>Akute Selbstgefährdung (Sturz, Herausreißen von Zugängen)</li>
+      <li>Weniger einschneidende Alternativen wurden geprüft und reichen nicht aus</li>
+      <li>Ärztliche Anordnung liegt vor</li>
+      <li>Betreuungsgerichtliche Genehmigung (bei Betreuten, §1906 BGB)</li>
+      <li>Zeitlich begrenzt mit regelmäßiger Überprüfung</li>
+      <li>Lückenlose Dokumentation</li>
+    </ul>
+
+    <h3>Alternativen – IMMER zuerst prüfen!</h3>
+    <ul>
+      <li>Niederflurbett / Bodenbett</li>
+      <li>Hüftprotektoren</li>
+      <li>Sensormatten (mit Einwilligung)</li>
+      <li>Engmaschige Beobachtung / 1:1-Betreuung</li>
+      <li>Beschäftigung, Zuwendung, Tagesstruktur</li>
+      <li>Angehörige einbeziehen</li>
+      <li>Wohnumgebung sicherer gestalten</li>
+    </ul>
+    <div class="highlight highlight-red">Merke: FEM ohne rechtliche Grundlage = §239 StGB Freiheitsberaubung. Alternativen müssen dokumentiert geprüft worden sein!</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB4-T8 -->
+<section class="section kb4-section" id="kb4-t8">
+  <div class="section-header">
+    <h2>Patientenrechtegesetz &amp; BTM-Gesetz</h2>
+    <span class="kb-badge kb4-badge">KB IV · PRG · BtMG</span>
+  </div>
+  <div class="section-content">
+    <h3>Patientenrechtegesetz (PRG) – seit 2013</h3>
+    <p>Verankert im BGB (§630a–g). Stärkt die Rechte der Patienten gegenüber Behandlern.</p>
+    <ul>
+      <li>Recht auf verständliche Information und Aufklärung (§630e)</li>
+      <li>Recht auf Einwilligung oder Ablehnung (§630d)</li>
+      <li>Recht auf vollständige Dokumentation und Einsicht (§630f, §630g)</li>
+      <li>Recht auf fehlerfreie Behandlung nach aktuellem Standard (§630a)</li>
+      <li>Recht auf Schadensersatz bei Behandlungsfehler (§280 BGB)</li>
+      <li><strong>Beweislastumkehr</strong> bei grobem Behandlungsfehler: Arzt/Einrichtung muss Unschuld beweisen</li>
+    </ul>
+
+    <h3>BTM-Gesetz (Betäubungsmittelgesetz)</h3>
+    <p>Regelt den Umgang mit Betäubungsmitteln (Morphin, Fentanyl, Oxycodon, Methadon, Tramadol bei stark wirksamer Dosierung).</p>
+    <h3>Pflichten der Pflegefachkraft</h3>
+    <ul>
+      <li><strong>BTM-Buch führen:</strong> Jede Entnahme dokumentieren (Datum, Patient, Menge, Restmenge, Unterschrift)</li>
+      <li><strong>Vier-Augen-Prinzip:</strong> Entnahme nur mit 2. Pflegefachkraft als Zeugin</li>
+      <li><strong>Sichere Aufbewahrung:</strong> Abschließbarer, fest verankerter BTM-Schrank</li>
+      <li><strong>Verfallsdatum:</strong> Vor jeder Entnahme prüfen</li>
+      <li><strong>Reste vernichten:</strong> Dokumentiert, mit Zeuge, nicht in Abwasser</li>
+      <li><strong>Bei Verlust:</strong> Sofortige Meldung an Vorgesetzte + ggf. Polizei</li>
+    </ul>
+    <div class="highlight highlight-red">Merke: Das BTM-Buch ist eine Urkunde. Falsche Eintragungen = §267 StGB (Urkundenfälschung)!</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB4-T9 -->
+<section class="section kb4-section" id="kb4-t9">
+  <div class="section-header">
+    <h2>Pflege-Charta &amp; Qualitätssicherung</h2>
+    <span class="kb-badge kb4-badge">KB IV · Qualität</span>
+  </div>
+  <div class="section-content">
+    <h3>Pflege-Charta (2003/2014)</h3>
+    <p>Leitlinien zur Sicherung der Würde und Rechte pflegebedürftiger Menschen – 8 Artikel:</p>
+    <table class="tbl">
+      <tr><th>Artikel</th><th>Inhalt</th></tr>
+      <tr><td>Art. 1</td><td>Selbstbestimmung und Hilfe zur Selbsthilfe</td></tr>
+      <tr><td>Art. 2</td><td>Körperliche und seelische Unversehrtheit, Freiheit und Sicherheit</td></tr>
+      <tr><td>Art. 3</td><td>Privatheit</td></tr>
+      <tr><td>Art. 4</td><td>Pflege, Betreuung und Behandlung</td></tr>
+      <tr><td>Art. 5</td><td>Information, Beratung und Aufklärung</td></tr>
+      <tr><td>Art. 6</td><td>Kommunikation, Wertschätzung und Teilhabe an der Gesellschaft</td></tr>
+      <tr><td>Art. 7</td><td>Religion, Kultur und Weltanschauung</td></tr>
+      <tr><td>Art. 8</td><td>Palliative Begleitung, Sterben und Tod</td></tr>
+    </table>
+
+    <h3>Qualitätssicherung in der Pflege</h3>
+    <ul>
+      <li><strong>Donabedian-Modell:</strong>
+        <ul>
+          <li>Strukturqualität: Was haben wir? (Personal, Räume, Ausstattung)</li>
+          <li>Prozessqualität: Was tun wir? (Pflegestandards, Abläufe)</li>
+          <li>Ergebnisqualität: Was erreichen wir? (Patientenzustand, Zufriedenheit)</li>
+        </ul>
+      </li>
+      <li><strong>PDCA-Zyklus:</strong> Plan → Do → Check → Act (kontinuierliche Verbesserung)</li>
+      <li><strong>DNQP Expertenstandards:</strong> Dekubitus, Sturz, Schmerz, Entlassung, Ernährung, Kontinenz, Wunde, Beziehungsgestaltung Demenz, Mundgesundheit, Hautintegrität</li>
+      <li><strong>MDK-Prüfungen:</strong> Medizinischer Dienst prüft Qualität in stationären Einrichtungen</li>
+      <li><strong>Pflegevisiten:</strong> Regelmäßige Überprüfung der Pflegequalität am Patienten</li>
+    </ul>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB4-T10 -->
+<section class="section kb4-section" id="kb4-t10">
+  <div class="section-header">
+    <h2>Pflegegrade &amp; NBA</h2>
+    <span class="kb-badge kb4-badge">KB IV · §14/§15 SGB XI</span>
+  </div>
+  <div class="section-content">
+    <h3>Neues Begutachtungsinstrument (NBA)</h3>
+    <p>Seit 2017 ersetzt das NBA die alten Pflegestufen. Maßgeblich: Grad der Selbstständigkeit, nicht Zeitaufwand.</p>
+    <table class="tbl">
+      <tr><th>Modul</th><th>Bereich</th><th>Gewichtung</th></tr>
+      <tr><td>1</td><td>Mobilität (Treppensteigen, Positionswechsel, Gehen)</td><td>10 %</td></tr>
+      <tr><td>2</td><td>Kognitive und kommunikative Fähigkeiten</td><td rowspan="2">15 % (zusammen)</td></tr>
+      <tr><td>3</td><td>Verhaltensweisen und psychische Problemlagen</td></tr>
+      <tr><td>4</td><td>Selbstversorgung (Körperpflege, Essen, An-/Auskleiden)</td><td>40 %</td></tr>
+      <tr><td>5</td><td>Krankheits-/therapiebezogene Anforderungen (Medikamente, Verbände, Arztbesuche)</td><td>20 %</td></tr>
+      <tr><td>6</td><td>Alltagsgestaltung und soziale Kontakte</td><td>15 %</td></tr>
+    </table>
+
+    <h3>Pflegegrade &amp; Punktwerte</h3>
+    <table class="tbl">
+      <tr><th>Pflegegrad</th><th>Punkte</th><th>Beschreibung</th></tr>
+      <tr><td>PG 1</td><td>12,5 – &lt;27</td><td>Geringe Beeinträchtigung der Selbständigkeit</td></tr>
+      <tr><td>PG 2</td><td>27 – &lt;47,5</td><td>Erhebliche Beeinträchtigung</td></tr>
+      <tr><td>PG 3</td><td>47,5 – &lt;70</td><td>Schwere Beeinträchtigung</td></tr>
+      <tr><td>PG 4</td><td>70 – &lt;90</td><td>Schwerste Beeinträchtigung</td></tr>
+      <tr><td>PG 5</td><td>90 – 100</td><td>Schwerste Beeintr. mit besonderem Pflegebedarf</td></tr>
+    </table>
+    <div class="highlight highlight-red">Modul 4 (Selbstversorgung) hat mit 40% die höchste Gewichtung – Körperpflege, Essen, Ausscheiden, Kleiden!</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+</div><!-- /panel-kb4 -->
+
+<!-- ══════════════ KB V ══════════════ -->
+<div class="panel" id="panel-kb5">
+
+<!-- KB5-T1 -->
+<section class="section kb5-section" id="kb5-t1">
+  <div class="section-header">
+    <h2>Pflegetheorien kompakt</h2>
+    <span class="kb-badge kb5-badge">KB V · Theorien &amp; Modelle</span>
+  </div>
+  <div class="section-content">
+    <table class="tbl">
+      <tr><th>Theoretikerin</th><th>Modell / Konzept</th><th>Kernaussage</th></tr>
+      <tr><td><strong>Krohwinkel</strong></td><td>ABEDL / AEDL (13 Bereiche)</td><td>Ressourcenorientiert; pflegerische Unterstützung bei Einschränkungen der Lebensaktivitäten</td></tr>
+      <tr><td><strong>Orem</strong></td><td>Selbstpflege-Defizit-Theorie (3 Pflegesysteme)</td><td>Völlig kompensatorisch / Teilweise kompensatorisch / Supportiv-edukativ – je nach Selbstpflegefähigkeit</td></tr>
+      <tr><td><strong>Henderson</strong></td><td>14 Grundbedürfnisse</td><td>Pflege unterstützt, was Patient alleine nicht kann – fördert Unabhängigkeit</td></tr>
+      <tr><td><strong>Peplau</strong></td><td>Interpersonale Beziehung – 4 Phasen</td><td>Orientierung → Identifikation → Nutzung → Ablösung. Therapeutische Pflegebeziehung als Kern</td></tr>
+      <tr><td><strong>Roper / Logan / Tierney</strong></td><td>12 Lebensaktivitäten, Kontinuum</td><td>Abhängig ↔ unabhängig; Faktoren, die LA beeinflussen (biologisch, psychologisch, soziokulturell)</td></tr>
+      <tr><td><strong>Corbin &amp; Strauss</strong></td><td>Trajectory-Modell</td><td>Chronische Krankheit als Verlaufskurve (Trajectory). Pflege begleitet durch alle Phasen</td></tr>
+      <tr><td><strong>Friedemann</strong></td><td>Systemische Balance-Modell</td><td>Familie als System; 4 Ziele: Stabilität, Zusammenhalt, Wachstum, Spiritualität. Zentral in der Familienpflege</td></tr>
+    </table>
+    <div class="highlight highlight-green">Für die mündliche Prüfung: Theorie nennen + Kernaussage + auf den Fall anwenden! „Bei diesem Patienten würde ich nach Orem arbeiten, weil…"</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB5-T2 -->
+<section class="section kb5-section" id="kb5-t2">
+  <div class="section-header">
+    <h2>ICN-Ethikkodex</h2>
+    <span class="kb-badge kb5-badge">KB V · Berufsethik</span>
+  </div>
+  <div class="section-content">
+    <h3>Was ist der ICN-Ethikkodex?</h3>
+    <p>Internationaler Leitfaden des International Council of Nurses (ICN) für ethisches Handeln in der Pflege. Gilt weltweit als ethische Grundlage des Pflegeberufs.</p>
+
+    <h3>4 Grundverantwortungen der Pflege</h3>
+    <ul>
+      <li>Gesundheit <strong>fördern</strong></li>
+      <li>Krankheit <strong>verhüten</strong></li>
+      <li>Gesundheit <strong>wiederherstellen</strong></li>
+      <li>Leiden <strong>lindern</strong></li>
+    </ul>
+
+    <h3>4 Handlungsbereiche (Säulen)</h3>
+    <table class="tbl">
+      <tr><th>Bereich</th><th>Kernaussage</th></tr>
+      <tr><td>1. Pflegende und Menschen</td><td>Menschenwürde, Selbstbestimmung, vertraulicher Umgang mit Informationen</td></tr>
+      <tr><td>2. Pflegende und Berufsausübung</td><td>Kompetenzerhalt, Eigenverantwortung, Ablehnung unethischer Aufgaben</td></tr>
+      <tr><td>3. Pflegende und Berufsstand</td><td>Mitgestaltung von Standards, Forschung, Berufspolitik</td></tr>
+      <tr><td>4. Pflegende und globale Gesundheit</td><td>Gerechtigkeit, Menschenrechte, nachhaltige Versorgung weltweit</td></tr>
+    </table>
+
+    <h3>Kernwerte des ICN</h3>
+    <ul>
+      <li>Menschenwürde · Menschenrechte · Gerechtigkeit</li>
+      <li>Fürsorge · Respekt · Integrität · Kompetenz</li>
+    </ul>
+
+    <h3>4 Ethische Prinzipien (Beauchamp &amp; Childress)</h3>
+    <ul>
+      <li><strong>Autonomie:</strong> Selbstbestimmungsrecht des Patienten respektieren</li>
+      <li><strong>Fürsorge (Benefizienz):</strong> Wohl des Patienten fördern</li>
+      <li><strong>Nicht-Schaden (Non-Malefizienz):</strong> Schaden vermeiden</li>
+      <li><strong>Gerechtigkeit:</strong> Faire Verteilung von Ressourcen und Behandlung</li>
+    </ul>
+    <div class="highlight highlight-green">⚠️ Gerechtigkeit wird häufig vergessen – alle 4 Prinzipien nennen!</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB5-T3 -->
+<section class="section kb5-section" id="kb5-t3">
+  <div class="section-header">
+    <h2>Bezugspflege / Primary Nursing / Funktionspflege</h2>
+    <span class="kb-badge kb5-badge">KB V · Pflegeorganisation</span>
+  </div>
+  <div class="section-content">
+    <table class="tbl">
+      <tr><th>Modell</th><th>Prinzip</th><th>Vorteile</th><th>Nachteile</th></tr>
+      <tr><td><strong>Funktionspflege</strong></td><td>Aufgabenverteilung nach Tätigkeiten (eine PFK macht alle Verbände, eine alle Medikamente)</td><td>Effizient, schnell, klare Routinen</td><td>Unpersönlich, kein ganzheitlicher Blick, Patient sieht viele verschiedene Gesichter</td></tr>
+      <tr><td><strong>Bereichspflege</strong></td><td>PFK verantwortet bestimmten Bereich (z.B. Zimmer 1–5)</td><td>Kompromiss, guter Überblick</td><td>Keine feste Kontinuität zum Patienten</td></tr>
+      <tr><td><strong>Bezugspflege (Primary Nursing)</strong></td><td>Jeder Patient hat eine feste verantwortliche PFK (Primary Nurse), die plant, koordiniert und evaluiert</td><td>Kontinuität, Vertrauen, ganzheitlich, bessere Pflegequalität</td><td>Hoher Personalaufwand, bei Ausfall Problem</td></tr>
+      <tr><td><strong>Teamarbeit / Gruppenpflege</strong></td><td>Ein Team verantwortet gemeinsam eine Gruppe von Patienten</td><td>Flexibel, gegenseitige Unterstützung</td><td>Unklare Verantwortlichkeiten möglich</td></tr>
+    </table>
+
+    <h3>Bedeutung für die Prüfung</h3>
+    <ul>
+      <li>Bezugspflege = wissenschaftlich fundiert, patientenzentriert, entspricht dem Professionalisierungsanspruch</li>
+      <li>Funktionspflege = historisch, gilt als überholt in der modernen Pflegewissenschaft</li>
+      <li>In der Praxis: oft Mischformen je nach Personalausstattung</li>
+    </ul>
+    <div class="highlight highlight-green">Wenn gefragt nach Pflegeorganisation: Primary Nursing benennen, Vorteile erklären, auf Kontinuität und Beziehungsqualität eingehen!</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB5-T4 -->
+<section class="section kb5-section" id="kb5-t4">
+  <div class="section-header">
+    <h2>Kinästhetik</h2>
+    <span class="kb-badge kb5-badge">KB V · Pflegekonzept</span>
+  </div>
+  <div class="section-content">
+    <h3>Definition</h3>
+    <p>Kinästhetik = Lehre von der Bewegungswahrnehmung. In der Pflege: Konzept zur bewegungsunterstützenden Pflege. Entwickelt von Frank Hatch und Lenny Suzuki (1970er Jahre), in die Pflege übertragen von Christel Bienstein und Susanne Nagel.</p>
+
+    <h3>6 Konzepte der Kinästhetik</h3>
+    <table class="tbl">
+      <tr><th>Konzept</th><th>Inhalt</th></tr>
+      <tr><td>1. Interaktion</td><td>Wie kommunizieren wir durch Bewegung? Berühren, führen, anleiten</td></tr>
+      <tr><td>2. Funktionale Anatomie</td><td>Knochen (Masse), Muskeln, Gelenke (Zwischenräume) – was bewegt sich wie?</td></tr>
+      <tr><td>3. Menschliche Bewegung</td><td>Aktivitäts- und Ruhehaltungen; Bewegung als Spirale, nicht linear</td></tr>
+      <tr><td>4. Anstrengung</td><td>Minimale Anstrengung für Patient UND Pflegekraft – Zug statt Druck</td></tr>
+      <tr><td>5. Menschliche Funktion</td><td>Alltagshandlungen als Grundlage (Drehen, Aufrichten, Gehen)</td></tr>
+      <tr><td>6. Umgebung</td><td>Nutzung von Hilfsmitteln und Umgebung zur Bewegungsunterstützung</td></tr>
+    </table>
+
+    <h3>Ziele &amp; Anwendung</h3>
+    <ul>
+      <li>Schonende Mobilisation: Patient wird geführt, nicht gehoben</li>
+      <li>Eigenwahrnehmung fördern: Patient nimmt eigene Bewegung bewusster wahr</li>
+      <li>Ressourcen erhalten: Eigene Bewegungsressourcen des Patienten aktivieren</li>
+      <li>Rückengesundheit der Pflegekraft: Weniger Kraft, mehr Technik</li>
+      <li>Anwendung: Transfer Bett–Stuhl, Umlagerung, Positionierung, Mobilisation</li>
+    </ul>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB5-T5 -->
+<section class="section kb5-section" id="kb5-t5">
+  <div class="section-header">
+    <h2>Basale Stimulation</h2>
+    <span class="kb-badge kb5-badge">KB V · Pflegekonzept</span>
+  </div>
+  <div class="section-content">
+    <h3>Definition &amp; Entstehung</h3>
+    <p>Konzept zur Förderung von Wahrnehmung, Kommunikation und Bewegung bei Menschen mit schwersten Beeinträchtigungen. Entwickelt von Prof. Andreas Fröhlich (Behindertenpädagogik, 1970er), in die Pflege übertragen von Prof. Christel Bienstein.</p>
+
+    <h3>3 Grundstimulationen</h3>
+    <ul>
+      <li><strong>Somatisch (Körper):</strong> Bewusstes Berühren, Waschen, Einreiben – fördert Körperwahrnehmung und -grenzen</li>
+      <li><strong>Vestibulär (Gleichgewicht):</strong> Schaukeln, Positionen wechseln, Neigen – fördert Gleichgewichts- und Lagewahrnehmung</li>
+      <li><strong>Vibratorisch (Schwingung):</strong> Vibrierende Flächen, Stimmgabel, Summton – fördert tiefe Körperwahrnehmung</li>
+    </ul>
+
+    <h3>Weitere Stimulationsformen</h3>
+    <ul>
+      <li>Oral: Mundpflege, Geschmackserfahrungen</li>
+      <li>Auditiv: Vertraute Stimme, Lieblingsmusik</li>
+      <li>Visuell: Kontrastfarben, vertraute Gesichter</li>
+      <li>Taktil-haptisch: Verschiedene Texturen fühlen</li>
+      <li>Olfaktorisch: Vertraute Gerüche (Lieblingsparfüm, Essen)</li>
+    </ul>
+
+    <h3>Zielgruppe &amp; Anwendung</h3>
+    <ul>
+      <li>Wachkoma, schwere Demenz, beatmete Patienten, Frühgeborene, Menschen nach Schlaganfall</li>
+      <li>Ersteinstimmung: Stets mit vertrauter, angenehmer Stimulation beginnen</li>
+      <li>Biografiebezug: Was war dem Menschen wichtig? (Lieblingsmusik, Gerüche)</li>
+    </ul>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB5-T6 -->
+<section class="section kb5-section" id="kb5-t6">
+  <div class="section-header">
+    <h2>Bobath-Konzept</h2>
+    <span class="kb-badge kb5-badge">KB V · Pflegekonzept · Neurologie</span>
+  </div>
+  <div class="section-content">
+    <h3>Definition &amp; Entstehung</h3>
+    <p>Neurophysiologisches Behandlungskonzept. Entwickelt von Berta Bobath (Physiotherapeutin) und Karel Bobath (Neurologe) in den 1940er Jahren. Ziel: Förderung normaler Bewegungsmuster nach neurologischen Schädigungen.</p>
+
+    <h3>Anwendung</h3>
+    <ul>
+      <li>Schlaganfall / Apoplex (Hemiplegie/Hemiparese)</li>
+      <li>Multiple Sklerose</li>
+      <li>Parkinson-Syndrom</li>
+      <li>Zerebralparese (bei Kindern)</li>
+    </ul>
+
+    <h3>Grundprinzipien</h3>
+    <ul>
+      <li><strong>24-Stunden-Konzept:</strong> Bobath nicht nur in der Therapie – auch in der Pflege und im Alltag anwenden</li>
+      <li><strong>Fazilitation:</strong> Normale Bewegungsabläufe anbahnen und unterstützen</li>
+      <li><strong>Hemmung:</strong> Pathologische Muster (Spastik) hemmen</li>
+      <li><strong>Schlüsselpunkte:</strong> Bewegung von proximalen Schlüsselpunkten (Schulter, Becken) steuern</li>
+      <li><strong>Betroffene Seite aktivieren:</strong> Immer von der betroffenen Seite aus ansprechen und unterstützen</li>
+    </ul>
+
+    <h3>Pflegerische Umsetzung</h3>
+    <ul>
+      <li>Lagerung: Betroffene Seite unterstützen, normale Position fördern</li>
+      <li>Transfer: Patient aktiv beteiligen, von der betroffenen Seite unterstützen</li>
+      <li>Körperpflege: Von der betroffenen Seite beginnen, Eigenaktivität fördern</li>
+      <li>Ansprechen: Immer von der betroffenen Seite (fördert Körperwahrnehmung)</li>
+    </ul>
+    <div class="highlight highlight-green">Hemiplegie ≠ Hemiparese! Hemiplegie = vollständige Lähmung · Hemiparese = teilweise Lähmung. In der Prüfung genau unterscheiden!</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB5-T7 -->
+<section class="section kb5-section" id="kb5-t7">
+  <div class="section-header">
+    <h2>Gewalt in der Pflege</h2>
+    <span class="kb-badge kb5-badge">KB V · Prävention · §223 StGB</span>
+  </div>
+  <div class="section-content">
+    <h3>Formen von Gewalt</h3>
+    <table class="tbl">
+      <tr><th>Form</th><th>Beispiele</th></tr>
+      <tr><td><strong>Körperlich</strong></td><td>Schlagen, grobe Handgriffe, unnötige Fixierung, Nahrung verweigern</td></tr>
+      <tr><td><strong>Psychisch</strong></td><td>Erniedrigen, ignorieren, bedrohen, einschüchtern, infantilisieren</td></tr>
+      <tr><td><strong>Sexuell</strong></td><td>Unangemessene Berührungen, sexuelle Belästigung</td></tr>
+      <tr><td><strong>Finanziell</strong></td><td>Bestehlen, zur Schenkung drängen, Geld einbehalten</td></tr>
+      <tr><td><strong>Strukturell</strong></td><td>Rigide Abläufe ohne Rücksicht auf Bedürfnisse, Zeitmangel, Depersonalisierung</td></tr>
+      <tr><td><strong>Vernachlässigung</strong></td><td>Nicht reagieren, Flüssigkeit nicht reichen, Inkontinenz nicht versorgen</td></tr>
+    </table>
+
+    <h3>Risikofaktoren</h3>
+    <ul>
+      <li>Auf Seiten der Pflegenden: Überlastung, Burnout, mangelnde Supervision, fehlende Ausbildung</li>
+      <li>Auf Seiten der Gepflegten: Demenz, Kommunikationseinschränkungen, Abhängigkeit</li>
+      <li>Auf Seiten der Institution: Personalmangel, schlechtes Betriebsklima, fehlende Strukturen</li>
+    </ul>
+
+    <h3>Schutzmaßnahmen &amp; Prävention</h3>
+    <ul>
+      <li>Offene Fehler- und Beschwerdekultur (CIRS)</li>
+      <li>Regelmäßige Supervision und Intervision</li>
+      <li>Beschwerdestellen und Ombudsleute für Patienten/Bewohner</li>
+      <li>Schulungen und Sensibilisierung des gesamten Teams</li>
+      <li>Ausreichende Personalausstattung sichern</li>
+      <li>Angehörige einbeziehen</li>
+    </ul>
+
+    <h3>Rechtliche Konsequenzen</h3>
+    <ul>
+      <li>§223 StGB – Körperverletzung</li>
+      <li>§229 StGB – Fahrlässige Körperverletzung</li>
+      <li>§239 StGB – Freiheitsberaubung (bei FEM ohne Grundlage)</li>
+      <li>Arbeitsrechtliche Konsequenzen bis zur fristlosen Kündigung</li>
+    </ul>
+    <div class="highlight highlight-green">Pflicht zur Meldung! Wer Gewalt beobachtet und schweigt, macht sich mitschuldig. Meldewege kennen und nutzen!</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+<!-- KB5-T8 -->
+<section class="section kb5-section" id="kb5-t8">
+  <div class="section-header">
+    <h2>Selbstfürsorge &amp; Burn-out-Prävention</h2>
+    <span class="kb-badge kb5-badge">KB V · Berufsethik · Gesundheit</span>
+  </div>
+  <div class="section-content">
+    <h3>Burnout-Phasen (nach Freudenberger / Edelwich &amp; Brodsky)</h3>
+    <table class="tbl">
+      <tr><th>Phase</th><th>Merkmale</th></tr>
+      <tr><td>1. Enthusiasmus</td><td>Hoher Einsatz, Überidentifikation mit der Arbeit, Grenzen ignorieren</td></tr>
+      <tr><td>2. Stagnation</td><td>Ernüchterung, erste Enttäuschungen, Erwartungen werden nicht erfüllt</td></tr>
+      <tr><td>3. Frustration</td><td>Hilflosigkeit, Zynismus, erste Distanz zu Patienten</td></tr>
+      <tr><td>4. Apathie</td><td>Emotionale Erschöpfung, innere Kündigung, Rückzug</td></tr>
+      <tr><td>5. Burnout (Zusammenbruch)</td><td>Totale Erschöpfung, körperliche Erkrankungen, Arbeitsunfähigkeit</td></tr>
+    </table>
+
+    <h3>Symptome erkennen</h3>
+    <ul>
+      <li><strong>Emotional:</strong> Erschöpfung, Reizbarkeit, Gleichgültigkeit, Zynismus gegenüber Patienten</li>
+      <li><strong>Körperlich:</strong> Schlafstörungen, Kopfschmerzen, häufige Infekte, Magenprobleme</li>
+      <li><strong>Sozial:</strong> Rückzug, Fehler häufen sich, Fehlzeiten steigen</li>
+    </ul>
+
+    <h3>Selbstfürsorge – Was kann ich tun?</h3>
+    <ul>
+      <li>Grenzen setzen: Nein sagen lernen, Pausen wirklich nehmen</li>
+      <li>Supervision und Intervision regelmäßig nutzen</li>
+      <li>Kollegiales Gespräch suchen – nicht alles alleine tragen</li>
+      <li>Work-Life-Balance: Freizeit schützen, Hobbys pflegen</li>
+      <li>Salutogenese (Antonovsky): Was hält mich gesund? Kohärenzgefühl stärken</li>
+      <li>Bei ernsteren Symptomen: professionelle Hilfe suchen (Betriebsarzt, Psychotherapie)</li>
+    </ul>
+
+    <h3>Institutionelle Schutzfaktoren</h3>
+    <ul>
+      <li>Ausreichende Personalausstattung</li>
+      <li>Wertschätzende, transparente Führung</li>
+      <li>Regelmäßige Fortbildung und Supervision</li>
+      <li>Offene Fehlerkultur (CIRS)</li>
+      <li>Betriebliches Gesundheitsmanagement (BGM)</li>
+    </ul>
+    <div class="highlight highlight-green">Selbstfürsorge ist keine Schwäche – sie ist Voraussetzung für gute Pflege. „Ich kann nur geben, was ich selbst habe."</div>
+  </div>
+  <button class="self-test-btn" onclick="toggleTest(this)">👁 Selbsttest</button>
+  <a class="back" href="#site-header">↑ nach oben</a>
+</section>
+
+</div><!-- /panel-kb5 -->
+
+</main>
+</div><!-- /app -->
+
+<script>
+// ── TAB SWITCHING ──
+const tabBtns = document.querySelectorAll('.tab-btn');
+const panels = { kb3: document.getElementById('panel-kb3'), kb4: document.getElementById('panel-kb4'), kb5: document.getElementById('panel-kb5') };
+const tocs = { kb3: document.getElementById('kb3-toc'), kb4: document.getElementById('kb4-toc'), kb5: document.getElementById('kb5-toc') };
+
+const kbVars = {
+  kb3: { active: '#3B5BDB', light: '#EEF2FF', mid: '#748FFC' },
+  kb4: { active: '#C92A2A', light: '#FFF5F5', mid: '#FA5252' },
+  kb5: { active: '#2F9E44', light: '#EBFBEE', mid: '#51CF66' }
+};
+
+function switchTab(tab) {
+  tabBtns.forEach(b => b.classList.remove('active'));
+  document.querySelector(`.tab-btn[data-tab="${tab}"]`).classList.add('active');
+  Object.keys(panels).forEach(k => { panels[k].classList.remove('active'); tocs[k].style.display = 'none'; });
+  panels[tab].classList.add('active');
+  tocs[tab].style.display = 'block';
+  document.body.dataset.tab = tab;
+  const v = kbVars[tab];
+  document.documentElement.style.setProperty('--active', v.active);
+  document.documentElement.style.setProperty('--active-light', v.light);
+  document.documentElement.style.setProperty('--active-mid', v.mid);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+tabBtns.forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
+
+// ── SELF TEST ──
+function toggleTest(btn) {
+  const section = btn.closest('.section');
+  section.classList.toggle('blurred');
+  btn.textContent = section.classList.contains('blurred') ? '👁 Aufdecken' : '👁 Selbsttest';
+}
+
+// ── SEARCH ──
+const searchInput = document.getElementById('search-input');
+let searchTimeout;
+
+searchInput.addEventListener('input', () => {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => {
+    const q = searchInput.value.trim().toLowerCase();
+    document.querySelectorAll('.search-hl').forEach(el => {
+      el.outerHTML = el.textContent;
+    });
+    if (q.length < 2) return;
+
+    // Search across all panels
+    let firstMatch = null;
+    let firstTab = null;
+    ['kb3','kb4','kb5'].forEach(tab => {
+      const panel = panels[tab];
+      panel.querySelectorAll('.section-content, h2').forEach(el => {
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+        let node;
+        while ((node = walker.nextNode())) {
+          const idx = node.textContent.toLowerCase().indexOf(q);
+          if (idx !== -1) {
+            const span = document.createElement('span');
+            span.className = 'search-hl';
+            const before = node.textContent.slice(0, idx);
+            const match = node.textContent.slice(idx, idx + q.length);
+            const after = node.textContent.slice(idx + q.length);
+            span.textContent = match;
+            const frag = document.createDocumentFragment();
+            frag.appendChild(document.createTextNode(before));
+            frag.appendChild(span);
+            frag.appendChild(document.createTextNode(after));
+            node.parentNode.replaceChild(frag, node);
+            if (!firstMatch) { firstMatch = span; firstTab = tab; }
+          }
+        }
+      });
+    });
+    if (firstMatch && firstTab) {
+      switchTab(firstTab);
+      setTimeout(() => firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+    }
+  }, 300);
+});
+
+// ── PROGRESS BAR ──
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = (window.scrollY / (doc.scrollHeight - doc.clientHeight)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+
+// ── TOC MOBILE TOGGLE ──
+document.getElementById('toc-toggle').addEventListener('click', () => {
+  document.getElementById('toc-panel').classList.toggle('open');
+});
+</script>
+</body>
+</html>
