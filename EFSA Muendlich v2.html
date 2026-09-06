@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="EFSA Mündlich">
+<title>Mündliche Prüfung – EFSA Lernbroschüre 2026</title>
+<style>
+:root{
+--bg:#F4F6F9;--card:#FFF;--ink:#151824;--dim:#6B7280;--line:#E4E8EF;
+--a:#E8590C;--al:#FFF4ED;--b:#1971C2;--bl:#E7F2FC;
+--r:#C92A2A;--rl:#FFF0F0;--g:#2B8A3E;--gl:#E8F8EC;
+--f:'Segoe UI',system-ui,-apple-system,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--f);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.62;-webkit-text-size-adjust:100%}
+header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 8px rgba(0,0,0,.06)}
+.hd{padding:11px 16px 6px}
+.hd h1{font-size:15.5px;font-weight:800;letter-spacing:-.01em}
+.hd p{font-size:11.5px;color:var(--dim);margin-top:1px}
+.search{margin:7px 16px 9px;display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:8px 14px}
+.search input{flex:1;border:0;background:none;font-size:15px;outline:none;font-family:var(--f);color:var(--ink)}
+nav{display:flex;overflow-x:auto;padding:0 8px;scrollbar-width:none;border-top:1px solid var(--line)}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:0 0 auto;border:0;background:none;padding:11px 14px;font-size:13.5px;font-weight:700;color:var(--dim);border-bottom:3px solid transparent;font-family:var(--f);cursor:pointer;white-space:nowrap}
+nav button.on{color:var(--a);border-color:var(--a)}
+main{max-width:900px;margin:0 auto;padding:14px 12px 60px}
+.tab{display:none}.tab.on{display:block}
+.c{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.ch{display:flex;align-items:center;gap:11px;padding:13px 15px;cursor:pointer;user-select:none}
+.ch:active{background:var(--bg)}
+.num{flex:0 0 auto;min-width:32px;height:30px;padding:0 7px;border-radius:8px;display:grid;place-items:center;font-size:12.5px;font-weight:800;background:var(--al);color:var(--a)}
+.ch h2{flex:1;font-size:14.5px;font-weight:700;line-height:1.35}
+.arw{color:var(--dim);font-size:12px;transition:transform .2s}
+.c.open .arw{transform:rotate(90deg)}
+.cb{display:none;padding:2px 15px 16px;border-top:1px solid var(--line)}
+.c.open .cb{display:block}
+h3{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--a);margin:15px 0 5px}
+h4{font-size:14px;font-weight:700;margin:11px 0 3px}
+p{font-size:15px;margin:5px 0}
+ul{list-style:none;margin:5px 0}
+li{position:relative;padding:3px 0 3px 17px;font-size:15px}
+li::before{content:'▪';position:absolute;left:2px;color:var(--a);top:3px}
+ul ul{margin-left:9px}ul ul li::before{content:'–';color:var(--dim)}
+ol{margin:5px 0 5px 20px}ol li{padding:3px 0;font-size:15px}ol li::before{content:none}
+strong{font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0;display:block;overflow-x:auto;white-space:nowrap}
+th{background:var(--bg);text-align:left;padding:8px 10px;font-weight:700;font-size:12.5px;border-bottom:2px solid var(--line)}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+@media(min-width:640px){table{white-space:normal;display:table}}
+.box{border-radius:9px;padding:10px 13px;font-size:14px;margin:9px 0;border-left:4px solid}
+.bo{background:var(--al);border-color:var(--a)}
+.bb{background:var(--bl);border-color:var(--b)}
+.br{background:var(--rl);border-color:var(--r)}
+.bg{background:var(--gl);border-color:var(--g)}
+.box b{display:block;margin-bottom:2px;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.case{background:#FBFBFD;border:1px dashed var(--line);border-radius:9px;padding:11px 13px;font-size:14px;margin:9px 0;color:#3A3F4E}
+.case b{color:var(--ink)}
+.src{font-size:12px;color:var(--dim);margin-top:13px;padding-top:8px;border-top:1px solid var(--line);line-height:1.5}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0 2px}
+.tag{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:11px;background:var(--bg);color:var(--dim);border:1px solid var(--line)}
+.tag.k3{background:var(--bl);color:var(--b);border-color:transparent}
+.tag.k4{background:var(--rl);color:var(--r);border-color:transparent}
+.tag.k5{background:var(--gl);color:var(--g);border-color:transparent}
+.tools{display:flex;gap:8px;margin-bottom:11px}
+.tools button{flex:1;padding:9px;font-size:12.5px;font-weight:700;border:1px solid var(--line);background:#fff;border-radius:9px;color:var(--dim);font-family:var(--f);cursor:pointer}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <h1>Mündliche Prüfung – EFSA Lernbroschüre</h1>
+    <p>Pflegefachmann · Saarland · 15. September 2026 · KB III · IV · V</p>
+  </div>
+  <div class="search"><span>🔍</span><input id="q" placeholder="Thema oder Begriff suchen …" autocomplete="off"></div>
+  <nav>
+    <button class="on" data-t="m">📋 Methode</button>
+    <button data-t="a">✅ Aufgaben 1–10</button>
+    <button data-t="f">📁 Fallsituationen</button>
+    <button data-t="w">➕ Weitere Themen</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ════ METHODE ════ -->
+<div class="tab on" id="tab-m">
+<div class="tools"><button onclick="all(1)">Alle öffnen</button><button onclick="all(0)">Alle schließen</button></div>
+
+<div class="c"><div class="ch"><span class="num">§</span><h2>Rechtsgrundlage und Aufbau der Prüfung</h2><span class="arw">▶</span></div><div class="cb">
+<h3>PflAPrV §15 – Prüfungsgegenstand</h3>
+<table>
+<tr><th>KB</th><th>Kompetenzbereich</th></tr>
+<tr><td><strong>III</strong></td><td>Intra- und interprofessionelles Handeln in unterschiedlichen systemischen Kontexten verantwortlich gestalten und mitgestalten</td></tr>
+<tr><td><strong>IV</strong></td><td>Das eigene Handeln auf der Grundlage von Gesetzen, Verordnungen und ethischen Leitlinien reflektieren und begründen</td></tr>
+<tr><td><strong>V</strong></td><td>Das eigene Handeln auf der Grundlage wissenschaftlicher Erkenntnisse und berufsethischer Werthaltungen reflektieren und begründen</td></tr>
+</table>
+<div class="box bo"><b>Schwerpunkt laut Verordnung</b>Auseinandersetzung mit der <strong>eigenen Berufsrolle</strong> und dem <strong>beruflichen Selbstverständnis</strong> sowie team-, einrichtungs- und gesellschaftsbezogene Kontexte.</div>
+<h3>Ablauf</h3>
+<table>
+<tr><th>Phase</th><th>Zeit</th><th>Inhalt</th></tr>
+<tr><td>Vorbereitung</td><td>15 Min. (großer Fall 25)</td><td>Fall lesen, A1–A3 in Stichpunkten notieren</td></tr>
+<tr><td>Teil 1 monologisch</td><td>max. 10 Min.</td><td>Freier Vortrag A1, A2, A3 – 16 Punkte</td></tr>
+<tr><td>Teil 2 dialogisch</td><td>20–35 Min.</td><td>Vier Fragen aus allen drei AFB</td></tr>
+</table>
+<div class="src">Quellen: PflAPrV §15 (gesetze-im-internet.de) · EFSA Lernbroschüre cE 1.8, Heinrich A., Stand 06/2025</div>
+</div></div>
+
+<div class="c"><div class="ch"><span class="num">A1</span><h2>A1 – Fallsituation zusammenfassen (4 Punkte)</h2><span class="arw">▶</span></div><div class="cb">
+<div class="box bb"><b>AFB I · max. 4 Punkte · ca. 5 Min.</b>Zentrale Inhalte und Themen werden erfasst und wiedergegeben. Der Bezug zur Fallsituation muss erkennbar sein.</div>
+<h3>Vier Pflichtbestandteile</h3>
+<ol><li>Das <strong>Setting</strong></li><li>Die <strong>Akteure</strong></li><li>Die <strong>wichtigen Inhalte</strong></li><li>Die <strong>möglichen Themen und Wissensgebiete</strong></li></ol>
+<h3>Formulierungshilfe</h3>
+<div class="case">Im Fall geht es um <b>……</b>, der/die sich in der <b>……</b> (Setting) befindet.<br><br>Der Grund ihres Aufenthalts ist <b>……</b><br><br>Beschreibung der Situation <b>……</b><br><br>Diese möglichen Themen enthält der Fall: <b>……</b></div>
+<div class="box bo"><b>Technik</b>Stichpunkte schon <strong>während</strong> des Lesens notieren. Themenwahl immer mit Fallbezug <strong>begründen</strong>.</div>
+<div class="src">Quelle: EFSA Lernbroschüre cE 1.8, S. 2 und S. 8</div>
+</div></div>
+
+<div class="c"><div class="ch"><span class="num">A2</span><h2>A2 und A3 – Perspektivwechsel (je 6 Punkte)</h2><span class="arw">▶</span></div><div class="cb">
+<div class="box bb"><b>AFB II · je 6 Punkte · ca. 6 Min.</b>Der Prüfling benennt die im Fall vorkommenden Personen, vollzieht einen Perspektivwechsel und beschreibt und deutet Erleben und Sichtweise jedes Akteurs.</div>
+<h3>Drei Denkschritte</h3>
+<ol>
+<li>Sich in die Lage des Akteurs <strong>versetzen</strong></li>
+<li>Sichtweise <strong>beschreiben und deuten</strong> – wie erlebt er die Situation, wie fühlt er sich?</li>
+<li>Vom Erleben das <strong>Handeln ableiten</strong></li>
+</ol>
+<div class="box br"><b>Zentrale Regel</b>Beim Perspektivwechsel geht es <strong>nicht</strong> darum, zu bewerten oder zu korrigieren.</div>
+<table><tr><th>Akteur (A2)</th><th>Sichtweise (A2)</th><th>Handlung (A3)</th></tr>
+<tr><td>Wer kommt vor?</td><td>Wie erlebt und fühlt diese Person?</td><td>Was tut sie deshalb?</td></tr></table>
+<h3>Sprachbausteine</h3>
+<ul>
+<li>„… erlebt die Situation als …, weil …"</li>
+<li>„Aus ihrer Sicht bedeutet das …"</li>
+<li>„Sie fühlt sich vermutlich …, weil sie …"</li>
+<li>„Daraus resultiert ihr Handeln: sie …"</li>
+</ul>
+<div class="src">Quelle: EFSA Lernbroschüre cE 1.8, S. 3, 6 und 8</div>
+</div></div>
+
+<div class="c"><div class="ch"><span class="num">AFB</span><h2>Anforderungsbereiche und Operatoren</h2><span class="arw">▶</span></div><div class="cb">
+<table>
+<tr><th>AFB I – Reproduktion</th><th>Was ist zu tun?</th><th>Tipps</th></tr>
+<tr><td>Nennen</td><td>Begriffe, Daten, Fakten kurz und präzise angeben</td><td>Stichworte</td></tr>
+<tr><td>Beschreiben</td><td>Sachverhalte strukturiert mit eigenen Worten wiedergeben</td><td>Ganze Sätze · Fachsprache · ohne Wertung</td></tr>
+<tr><td>Zuordnen</td><td>Begriffe, Abläufe oder Sachverhalte verbinden</td><td>Tabelle oder Verbindungslinien</td></tr>
+<tr><td>Zusammenfassen</td><td>Wichtigste Aussagen kurz wiedergeben</td><td>Ganze Sätze · in eigene Worte fassen</td></tr>
+<tr><td>Definieren</td><td>Bedeutung eines Begriffs darstellen</td><td>Stichpunkte · Merkmale · Fachsprache</td></tr>
+</table>
+<table>
+<tr><th>AFB II – Reorganisation</th><th>Was ist zu tun?</th><th>Tipps</th></tr>
+<tr><td>Ermitteln</td><td>Etwas durch analytisches Arbeiten feststellen</td><td>Stichpunkte · Textbezug deutlich machen</td></tr>
+<tr><td>Erklären</td><td>Ursachen, Bedingungen und Folgen verständlich machen</td><td>Ganze Sätze · „weil" · Fachsprache · ohne Wertung</td></tr>
+<tr><td>Vergleichen</td><td>Gemeinsamkeiten und Unterschiede herausstellen</td><td>Tabelle gegenüberstellen</td></tr>
+<tr><td>Anwenden</td><td>Wissen in neuen Situationen anwenden</td><td>Ganze Sätze · Konzepte übertragen</td></tr>
+</table>
+<table>
+<tr><th>AFB III – Reflexion</th><th>Was ist zu tun?</th><th>Tipps</th></tr>
+<tr><td>Begründen</td><td>Beschreiben, warum etwas ist bzw. welche Argumente dafür sprechen</td><td>„weil" · Bezug auf Regeln, Gesetze, Ursache-Wirkung</td></tr>
+<tr><td>Diskutieren</td><td>Stützende und widerlegende Aussagen abwägen</td><td>Pro und Contra ordnen</td></tr>
+<tr><td>Stellung beziehen</td><td>Kritisch prüfen und begründetes Urteil abgeben</td><td><strong>„ich"</strong> und <strong>„weil"</strong></td></tr>
+<tr><td>Entwickeln</td><td>Eigene Ideen darstellen und begründen</td><td>Ganze Sätze</td></tr>
+<tr><td>Deuten</td><td>Perspektive anderer einnehmen, Verhalten nachvollziehen</td><td>Ganze Sätze · „weil"</td></tr>
+</table>
+<div class="src">Quelle: Operatorenliste EFSA / Prüfungsunterlagen Saarland</div>
+</div></div>
+
+<div class="c"><div class="ch"><span class="num">⭐</span><h2>Bewertung Teil 1 – Präsentation</h2><span class="arw">▶</span></div><div class="cb">
+<p>Zusätzlich zu den 16 Inhaltspunkten – vollständig (1,5) · überwiegend (1) · teilweise (0,5):</p>
+<ul>
+<li>folgt sicher einem roten Faden</li>
+<li>hält situationsgerecht Blickkontakt mit den Fachprüfern</li>
+<li>verwendet angemessene Zeitkontingente für die Teilaspekte</li>
+<li>spricht frei und kontinuierlich</li>
+<li>setzt Fachsprache sicher ein</li>
+<li>drückt sich kontinuierlich verständlich aus</li>
+</ul>
+<div class="box bg"><b>Zeiteinteilung</b>A1 ca. 5 Min. · A2 und A3 zusammen ca. 6 Min.</div>
+<div class="src">Quelle: EFSA Bewertungsbogen Teil 1, S. 5–7</div>
+</div></div>
+</div>
+
+<!-- ════ AUFGABEN ════ -->
+<div class="tab" id="tab-a">
+<div class="tools"><button onclick="all(1)">Alle öffnen</button><button onclick="all(0)">Alle schließen</button></div>
+
+<!-- 1 -->
+<div class="c"><div class="ch"><span class="num">1</span><h2>Begriffe der Delegation definieren</h2><span class="arw">▶</span></div><div class="cb">
+<div class="tags"><span class="tag k3">KB III</span><span class="tag k4">KB IV</span></div>
+<p>Pflegekräfte stehen in der <strong>Garantenpflicht</strong> gegenüber ihren Schutzbefohlenen. Zu prüfen ist immer: <em>Wer ist wem gegenüber weisungsbefugt?</em></p>
+
+<h3>Delegation</h3>
+<p>Übertragung einer ärztlichen oder pflegerischen Aufgabe an eine andere, dafür qualifizierte Person. Voraussetzungen: Eignung der Person, Einweisung, Überwachung, Dokumentation. Die Aufgabe wird abgegeben – nicht die Verantwortung für Auswahl und Kontrolle.</p>
+
+<h3>Anordnungsverantwortung</h3>
+<p>Liegt beim <strong>Arzt</strong>. Er verantwortet:</p>
+<ul>
+<li>Die <strong>Diagnose stimmt</strong></li>
+<li>Die <strong>Indikation stimmt</strong></li>
+<li>Die <strong>beauftragte Person hat die nötige Kompetenz</strong></li>
+</ul>
+
+<h3>Übernahmeverantwortung</h3>
+<p>Liegt bei der <strong>Pflegefachkraft</strong>: „Ich bin qualifiziert." Vor der Übernahme prüfe ich meine eigene Kompetenz. Wer eine Aufgabe übernimmt, für die er nicht qualifiziert ist, begeht ein <strong>Übernahmeverschulden</strong> und haftet selbst.</p>
+
+<h3>Durchführungsverantwortung</h3>
+<p>Liegt bei der <strong>ausführenden Person</strong>: „Ich arbeite sorgfältig und nach aktuellem Wissensstand." Fehler in der Durchführung begründen eigene Haftung nach §276 BGB.</p>
+
+<h3>Organisationsverantwortung</h3>
+<p>Liegt beim <strong>Träger und der Leitung</strong>: ausreichend qualifiziertes Personal, funktionsfähige Geräte und Geräteeinweisung, verbindliche Standards, Einarbeitung, Dienstplanung, Fortbildung.</p>
+
+<h3>Organisationsverschulden</h3>
+<p>Verletzung der Organisationsverantwortung durch die Einrichtung – etwa dauerhafte Unterbesetzung, fehlende Einweisung, keine Standards. Die Haftung trifft dann den <strong>Träger</strong>, nicht allein die Pflegekraft.</p>
+
+<h3>Remonstrationsrecht und -pflicht</h3>
+<ul>
+<li><strong>Recht</strong>: Ich darf Bedenken gegen eine Anordnung äußern</li>
+<li><strong>Pflicht</strong>: Ich <em>muss</em> Bedenken äußern, wenn ich eine Anordnung für fachlich falsch, gefährlich oder rechtswidrig halte</li>
+<li>Vorgehen: fachlich begründet gegenüber dem Anordnenden · bei Nichtabhilfe eskalieren (Oberarzt, PDL) · <strong>dokumentieren</strong>: Zeitpunkt, Wortlaut, Begründung, Reaktion</li>
+</ul>
+
+<h3>Verweigerung</h3>
+<p>Die Nichtausführung einer Anordnung. Zulässig und geboten, wenn:</p>
+<ul>
+<li>ich für die Aufgabe <strong>nicht qualifiziert</strong> bin</li>
+<li>die Anordnung <strong>offensichtlich fehlerhaft oder gefährlich</strong> ist</li>
+<li>die Ausführung <strong>rechtswidrig</strong> wäre, etwa Gewalt gegen einen Bewohner</li>
+</ul>
+<div class="box br"><b>Instruktions- und Überwachungspflicht</b>Wer delegiert, muss beaufsichtigen und kontrollieren. Delegation ist keine Abgabe der Verantwortung.</div>
+<div class="src">Quellen: I care Pflege, Georg Thieme Verlag – Kapitel Rechtliche Grundlagen, Abb. „Verantwortungen im Prozess der Delegation" · Elsevier PFLEGEN Grundlagen und Interventionen · PflBG §4 · BGB §276</div>
+</div></div>
+
+<!-- 2 -->
+<div class="c"><div class="ch"><span class="num">2</span><h2>Fixierung im Kontext der Pflege</h2><span class="arw">▶</span></div><div class="cb">
+<div class="tags"><span class="tag k4">KB IV</span></div>
+<h3>Definition</h3>
+<p>Fixierung ist eine <strong>freiheitsentziehende Maßnahme (FEM)</strong>: jede Maßnahme, die eine Person gegen oder ohne ihren Willen in ihrer Bewegungsfreiheit einschränkt.</p>
+<h3>Formen</h3>
+<table>
+<tr><th>Art</th><th>Beispiele</th></tr>
+<tr><td>Mechanisch</td><td>Bauchgurt, Handfixierung, Bettgitter, Therapietisch am Rollstuhl, Fixierjacke</td></tr>
+<tr><td>Medikamentös</td><td>Sedierung ohne therapeutische Indikation, allein zur Ruhigstellung</td></tr>
+<tr><td>Räumlich</td><td>Abgeschlossene Zimmer- oder Wohnbereichstür, komplizierte Türöffner</td></tr>
+<tr><td>Elektronisch</td><td>Sensormatte, Ortungssystem ohne Einwilligung</td></tr>
+<tr><td>Mittelbar</td><td>Schuhe, Brille oder Gehhilfe wegnehmen, Rollstuhl außer Reichweite</td></tr>
+</table>
+<h3>Rechtliche Grundlagen</h3>
+<ul>
+<li><strong>Art. 2 Abs. 2 GG</strong> – Freiheit der Person als Grundrecht</li>
+<li><strong>§1831 BGB</strong> (seit der Betreuungsrechtsreform 2023; vormals §1906) – FEM bei Betreuten nur mit <strong>Genehmigung des Betreuungsgerichts</strong></li>
+<li><strong>§239 StGB</strong> – ohne Rechtsgrundlage liegt <strong>Freiheitsberaubung</strong> vor</li>
+<li><strong>§223 StGB</strong> – bei körperlicher Einwirkung zusätzlich Körperverletzung</li>
+</ul>
+<h3>Zulässigkeit – alle Bedingungen müssen erfüllt sein</h3>
+<ol>
+<li>Akute erhebliche <strong>Selbst- oder Fremdgefährdung</strong></li>
+<li>Alle <strong>milderen Mittel</strong> geprüft, dokumentiert und erfolglos</li>
+<li><strong>Ärztliche Anordnung</strong></li>
+<li><strong>Einwilligung</strong> des Einwilligungsfähigen oder <strong>richterliche Genehmigung</strong></li>
+<li><strong>Zeitlich befristet</strong> mit regelmäßiger Überprüfung</li>
+<li><strong>Engmaschige Überwachung</strong>; bei Fixierung ohne Fluchtmöglichkeit ständige Sitzwache</li>
+<li><strong>Lückenlose Dokumentation</strong>: Grund, Art, Beginn, Ende, Kontrollen, Befinden</li>
+</ol>
+<h3>Alternativen – immer zuerst prüfen</h3>
+<ul>
+<li>Niederflurbett, Bodenbett, Sturzmatte vor dem Bett</li>
+<li>Hüftprotektoren, rutschfeste Schuhe und Antirutschsocken</li>
+<li>Nachtlicht, beleuchteter und freier Weg zur Toilette, Haltegriffe</li>
+<li>Toilettengang vor dem Schlafengehen, Nachtstuhl im Zimmer</li>
+<li>Bewegungsmelder oder Klingelmatte mit Einwilligung</li>
+<li>Tagesstruktur, Beschäftigung, Bewegungsangebote</li>
+<li>Biografiearbeit und Validation bei Demenz – Ursache der Unruhe verstehen</li>
+<li>Medikamentenüberprüfung: Sedativa, Diuretika am Abend, Antihypertonika</li>
+<li>Zimmer nahe dem Stützpunkt, engere Kontrollintervalle, Sitzwache</li>
+<li><strong>Werdenfelser Weg</strong> – gerichtliches Verfahren zur FEM-Reduktion</li>
+</ul>
+<div class="box br"><b>Fachliche Begründung</b>Fixierungen senken das Sturzrisiko nicht, sondern erhöhen nachweislich schwere Sturzverletzungen, Dekubitus, Kontrakturen, Delir und Mortalität. Zum Selbstbestimmungsrecht gehört auch das <strong>Recht auf Risiko</strong>.</div>
+<div class="src">Quellen: I care Pflege, Thieme – Kapitel Rechtliche Grundlagen / Freiheitsentziehende Maßnahmen · Elsevier PFLEGEN Grundlagen und Interventionen · BGB §1831 · StGB §239 · Leitlinie FEM, Universität Witten/Herdecke</div>
+</div></div>
+
+<!-- 3 -->
+<div class="c"><div class="ch"><span class="num">3</span><h2>Fall 1 – Sturz in der Kurzzeitpflege · Stellung beziehen</h2><span class="arw">▶</span></div><div class="cb">
+<div class="tags"><span class="tag k4">KB IV</span><span class="tag">AFB III</span></div>
+<div class="case"><b>Sachverhalt:</b> 94-jährige Bewohnerin, April 2018 in Kurzzeitpflege. Nachts aufgestanden, gestürzt, Platzwunde. Acht Tage später erneut nachts aufgestanden, Zimmer verlassen, schwer verletzt im Speisesaal gefunden – Hirnblutung und Oberschenkelfraktur. Vier Monate später verstorben. Die Tochter klagte. <em>(Landgericht Köln)</em></div>
+<h3>Rechtliche Einordnung</h3>
+<ul>
+<li>Sturzrisiko allein rechtfertigt <strong>keine</strong> FEM</li>
+<li>Eine Fixierung wäre ein Eingriff in <strong>Art. 2 GG</strong> und ohne betreuungsgerichtliche Genehmigung nach <strong>§239 StGB</strong> strafbar</li>
+<li>Zum Selbstbestimmungsrecht gehört das <strong>Recht auf Risiko</strong></li>
+<li>Zu prüfen ist stattdessen die <strong>Sorgfaltspflicht</strong> nach §276 BGB und die Umsetzung des <strong>Expertenstandards Sturzprophylaxe (DNQP)</strong></li>
+</ul>
+<h3>Meine Position – Formulierungsmuster</h3>
+<div class="case">„<b>Ich</b> halte die Entscheidung gegen eine Fixierung für richtig, <b>weil</b> sie einen Eingriff in das Grundrecht auf Freiheit der Person nach Art. 2 GG darstellt und ohne betreuungsgerichtliche Genehmigung nach §239 StGB strafbar wäre. <b>Weil</b> Fixierungen zudem nachweislich schwere Sturzverletzungen, Delir und Immobilität begünstigen, wäre sie auch fachlich nicht das geeignete Mittel gewesen. <b>Ich</b> hätte stattdessen …"</div>
+<h3>Wie ich gehandelt hätte</h3>
+<ol>
+<li>Nach dem ersten Sturz: <strong>Sturzereignisprotokoll</strong> und erneute Risikoeinschätzung</li>
+<li><strong>Sturzursachenanalyse</strong>: Warum steht sie nachts auf? Toilettengang, Schmerz, Durst, Desorientierung, Delir</li>
+<li><strong>Medikamentenreview</strong> mit dem Arzt: Sedativa, Diuretika am Abend, Antihypertonika</li>
+<li><strong>Pflegeplanung anpassen</strong>, Maßnahmen begründet dokumentieren</li>
+<li><strong>Angehörige und Betreuer</strong> informieren und einbeziehen</li>
+<li>Alternativen umsetzen und <strong>evaluieren</strong></li>
+</ol>
+<h3>Alternativen zur Fixierung in diesem Fall</h3>
+<ul>
+<li>Niederflurbett mit Sturzmatte davor</li>
+<li>Nachtlicht, beleuchteter Weg zur Toilette, Haltegriffe</li>
+<li>Toilettengang vor dem Schlafengehen, Nachtstuhl im Zimmer</li>
+<li>Bewegungsmelder oder Klingelmatte mit Einwilligung</li>
+<li>Engere nächtliche Kontrollintervalle, Zimmer nahe dem Stützpunkt</li>
+<li>Hüftprotektoren, rutschfeste Antirutschsocken</li>
+<li>Tagesaktivierung zur Stabilisierung des Nachtschlafs</li>
+</ul>
+<div class="box bo"><b>Kernsatz</b>Nicht die Fixierung schützt vor dem Sturz, sondern die konsequente Anwendung des Expertenstandards Sturzprophylaxe und die Analyse der individuellen Sturzursache.</div>
+<div class="src">Quellen: Urteil des Landgerichts Köln, veröffentlicht in Ärztezeitung 03.11.2020 · DNQP Expertenstandard Sturzprophylaxe in der Pflege · I care Pflege, Thieme · Elsevier PFLEGEN Grundlagen und Interventionen</div>
+</div></div>
+
+<!-- 4 -->
+<div class="c"><div class="ch"><span class="num">4</span><h2>Fall 2 – Sturz am Toilettenstuhl · Sorgfaltspflicht</h2><span class="arw">▶</span></div><div class="cb">
+<div class="tags"><span class="tag k4">KB IV</span><span class="tag">AFB III</span></div>
+<div class="case"><b>Sachverhalt:</b> Bewohnerin, Jahrgang 1927, Alzheimer-Demenz, Pflegestufe III, inkontinent, bereits Z.n. Oberschenkelfraktur mit Hüftkopfprothese. Die Pflegerin führt sie abends ins Zimmer, fordert sie auf, sich an den Haltegriffen am Waschbecken festzuhalten, und <strong>wendet sich ab</strong>, um den Toilettenstuhl zu holen. Die Bewohnerin stürzt: Oberarmfraktur, Kopfverletzung, beidseitiges subdurales Hämatom, OP, Pneumonie, Vancomycin, Niereninsuffizienz, Tod nach knapp zwei Monaten. Der Erbe klagt auf Schmerzensgeld.</div>
+<h3>Meine Position</h3>
+<div class="case">„<b>Ich</b> bewerte das Verhalten der Pflegerin als Verletzung der Sorgfaltspflicht, <b>weil</b> bei einer desorientierten, hochsturzgefährdeten Bewohnerin mit bereits erfolgtem Sturz und Hüftprothese eine ungesicherte Stehposition nicht vertretbar ist. <b>Weil</b> die Bewohnerin demenzbedingt die Aufforderung, sich festzuhalten, nicht zuverlässig umsetzen konnte, durfte sie in dieser Situation nicht unbeaufsichtigt stehen bleiben."</div>
+<h3>Rechtliche Einordnung</h3>
+<ul>
+<li><strong>§276 BGB</strong> – Fahrlässigkeit: Außerachtlassen der im Verkehr erforderlichen Sorgfalt</li>
+<li><strong>§280 BGB</strong> – Schadensersatz wegen Pflichtverletzung aus dem Heimvertrag</li>
+<li><strong>§229 StGB</strong> – fahrlässige Körperverletzung</li>
+<li><strong>§222 StGB</strong> – fahrlässige Tötung bei nachgewiesener Kausalkette</li>
+<li><strong>§630h BGB</strong> – bei grobem Behandlungsfehler <strong>Beweislastumkehr</strong> zu Lasten der Einrichtung</li>
+<li>Fehlende oder unvollständige Dokumentation wirkt sich <strong>gegen</strong> die Einrichtung aus</li>
+</ul>
+<h3>Wie ich gehandelt hätte</h3>
+<ol>
+<li><strong>Alle Hilfsmittel vor Beginn</strong> des Transfers bereitstellen – ich verlasse die Bewohnerin nicht, um Material zu holen</li>
+<li>Bewohnerin <strong>sitzend sichern</strong> (Bettkante, Stuhl mit Armlehnen), nicht stehend „parken"</li>
+<li><strong>Ständiger Körper- oder Griffkontakt</strong> während des gesamten Transfers</li>
+<li>Bei Bedarf <strong>Transfer zu zweit</strong></li>
+<li><strong>Kinästhetische Transfertechnik</strong> statt Heben und Ziehen</li>
+<li>Sturzereignis und Maßnahmen vollständig <strong>dokumentieren</strong></li>
+</ol>
+<h3>Alternative Vorgehensweisen zur Sturzvermeidung</h3>
+<ul>
+<li><strong>Expertenstandard Sturzprophylaxe (DNQP)</strong> konsequent umsetzen – Assessment bei Aufnahme und nach jedem Ereignis</li>
+<li>Toilettenstuhl <strong>dauerhaft im Zimmer</strong>, Hilfsmittel in Reichweite</li>
+<li><strong>Geplante Toilettengänge</strong> bei Inkontinenz statt spontaner Notfallgänge (Toilettentraining)</li>
+<li>Angepasstes Schuhwerk, rutschfester Boden, keine Teppichkanten</li>
+<li>Beleuchtung und Haltegriffe im Sanitärbereich</li>
+<li>Mobilitätsförderung, Kraft- und Balancetraining durch Physiotherapie</li>
+<li>Hüftprotektoren bei Osteoporose und Z.n. Fraktur</li>
+<li>Personalausstattung und verbindliche Transferstandards → <strong>Organisationsverantwortung</strong></li>
+</ul>
+<div class="box br"><b>Kernsatz</b>Der Fehler lag nicht in der Demenz der Bewohnerin, sondern in der <strong>Organisation der Handlung</strong>: Hilfsmittel gehören vor Beginn des Transfers bereitgestellt.</div>
+<div class="src">Quellen: Urteil aus der EFSA Broschüre, S. 7 · DNQP Expertenstandard Sturzprophylaxe · BGB §§276, 280, 630h · I care Pflege, Thieme · Elsevier PFLEGEN Grundlagen und Interventionen</div>
+</div></div>
+
+<!-- 5 -->
+<div class="c"><div class="ch"><span class="num">5</span><h2>DBfK-Umfrage – Zufriedenheit und Pflegequalität</h2><span class="arw">▶</span></div><div class="cb">
+<div class="tags"><span class="tag k3">KB III</span><span class="tag k5">KB V</span></div>
+<h3>Aussage zur Zufriedenheit von Pflegekräften</h3>
+<p>Die Erhebungen des DBfK zeigen über Jahre ein stabiles Bild:</p>
+<ul>
+<li>Ein großer Teil der Pflegenden ist mit den <strong>Arbeitsbedingungen</strong> unzufrieden – nicht mit dem Beruf selbst</li>
+<li>Hauptbelastungen: <strong>Personalmangel</strong>, kurzfristiges Einspringen aus dem Frei, Überstunden, ausfallende Pausen</li>
+<li>Viele können die Pflege <strong>nicht so leisten, wie sie es fachlich für richtig halten</strong> → moralischer Stress</li>
+<li>Ein erheblicher Anteil erwägt <strong>Berufsausstieg</strong> oder Stundenreduktion</li>
+<li>Gesundheitliche Folgen: Erschöpfung, Schlafstörungen, Burn-out-Symptomatik</li>
+</ul>
+<div class="box bb"><b>Begründung</b>Die Unzufriedenheit richtet sich nicht gegen die Pflegetätigkeit, <strong>weil</strong> die Arbeit am Menschen weiterhin als sinnstiftend erlebt wird – sondern gegen die <strong>strukturellen Rahmenbedingungen</strong>, die professionelles Handeln verhindern.</div>
+<h3>Vergleich – Arbeitgeberaussage (Folie 23) gegenüber Pflegekräften (Folien 13–20)</h3>
+<table>
+<tr><th>Sicht der Arbeitgeber</th><th>Sicht der Pflegenden</th></tr>
+<tr><td>Die Pflegequalität in der eigenen Einrichtung sei gut</td><td>Fachlich notwendige Maßnahmen müssen regelmäßig unterbleiben</td></tr>
+<tr><td>Beurteilung über messbare Struktur- und Ergebnisindikatoren</td><td>Beurteilung über die erlebte Prozessqualität am Patienten</td></tr>
+<tr><td>Steuerungs- und Wirtschaftlichkeitsperspektive</td><td>Perspektive der unmittelbaren Versorgungsrealität</td></tr>
+</table>
+<div class="box bb"><b>Fachliche Erklärung</b>Beide Seiten sprechen über dieselbe Einrichtung, messen Qualität aber an unterschiedlichen Dimensionen nach <strong>Donabedian</strong> – Struktur- und Ergebnisqualität gegenüber Prozessqualität.</div>
+<h3>Stellungnahme – Formulierungsmuster</h3>
+<div class="case">„<b>Ich</b> sehe eine deutliche Diskrepanz zwischen dem Selbstbild der Arbeitgeber und dem Erleben der Pflegenden. <b>Weil</b> Arbeitgeber Qualität überwiegend über messbare Struktur- und Ergebniskriterien beurteilen, Pflegende sie aber über die tatsächlich geleistete Prozessqualität am Patienten erleben, entstehen zwei unterschiedliche Wahrheiten über dieselbe Einrichtung. <b>Ich</b> halte die Einschätzung der Pflegenden für aussagekräftiger, <b>weil</b> sie unmittelbar an der Versorgung beteiligt sind und beurteilen können, welche Maßnahmen tatsächlich unterbleiben mussten."</div>
+<h3>Berufspolitische Konsequenzen</h3>
+<ul>
+<li>Verbindliche <strong>Personalbemessung</strong> – PPR 2.0, Personalbemessungsverfahren nach §113c SGB XI</li>
+<li>Verlässliche Dienstpläne und <strong>Ausfallkonzepte</strong> statt Einspringen aus dem Frei</li>
+<li><strong>Betriebliches Gesundheitsmanagement</strong>, Supervision, offene Fehlerkultur</li>
+<li>Stärkung der <strong>Profession</strong>: Vorbehaltsaufgaben, erweiterte Kompetenzen, Akademisierung</li>
+<li><strong>Interessenvertretung</strong>: Berufsverbände, Pflegekammern, betriebliche Mitbestimmung</li>
+</ul>
+<div class="src">Quellen: DBfK-Umfrage „Pflege – wie geht es dir?", Deutscher Berufsverband für Pflegeberufe · Donabedian, Qualitätsdimensionen · Elsevier PFLEGEN Grundlagen und Interventionen · I care Pflege, Thieme</div>
+</div></div>
+
+<!-- 6 -->
+<div class="c"><div class="ch"><span class="num">6</span><h2>Fallarbeit A und B – rechtliche Hintergründe</h2><span class="arw">▶</span></div><div class="cb">
+<div class="tags"><span class="tag k3">KB III</span><span class="tag k4">KB IV</span></div>
+
+<h3 style="color:var(--r)">Fallarbeit A – Zwangsduschen</h3>
+<div class="case">Die Pflegehilfskraft fordert Sie auf, der sich wehrenden Bewohnerin die Hände hinter dem Rücken zu fixieren, um sie unter Anwendung von Gewalt abzuduschen.</div>
+<h4>Rechtliche Einordnung</h4>
+<ul>
+<li><strong>§630d BGB</strong> – jede Maßnahme bedarf der Einwilligung; die Bewohnerin verweigert erkennbar</li>
+<li><strong>§223 StGB</strong> – Duschen gegen den Willen ist Körperverletzung</li>
+<li><strong>§239 StGB</strong> – das Festhalten der Hände ist Freiheitsberaubung</li>
+<li><strong>Art. 1 GG</strong> Menschenwürde · <strong>Art. 2 GG</strong> körperliche Unversehrtheit</li>
+<li>Es liegt <strong>Gewalt in der Pflege</strong> vor – auch das Schweigen darüber wäre pflichtwidrig</li>
+</ul>
+<h4>Meine Position und mein Handeln</h4>
+<ol>
+<li><strong>Ich führe die Maßnahme nicht durch</strong> – Verweigerung ist hier Pflicht</li>
+<li>Ich beende die Situation deeskalierend, ohne die Bewohnerin bloßzustellen</li>
+<li>Ich akzeptiere die Ablehnung und versuche es später erneut – kein Machtkampf</li>
+<li>Ich suche die <strong>Ursache</strong>: Schmerz, Angst vor Wasser, Kälte, Scham, biografische Erfahrung, falscher Zeitpunkt, fremde Person</li>
+<li><strong>Alternativen</strong>: Waschung im Bett, Teilwaschung, gleichgeschlechtliche Pflegekraft, Angehörige einbeziehen, vertraute Rituale, Validation, Basale Stimulation</li>
+<li>Ich <strong>dokumentiere</strong> die Ablehnung sachlich und melde den Vorfall an die Leitung (Gewaltschutz, CIRS)</li>
+<li>Ich rege eine <strong>Fallbesprechung</strong> und Anleitung der Hilfskraft an</li>
+</ol>
+<div class="box br"><b>Merksatz</b>Körperpflege ist kein Zwangsrecht. Eine tägliche Dusche ist kein Rechtsgut, das Gewalt rechtfertigt – Würde und Selbstbestimmung wiegen schwerer.</div>
+
+<h3 style="color:var(--b);margin-top:20px">Fallarbeit B – Trachealkanüle entfernen</h3>
+<div class="case">Frau Arnold, geriatrische Station, Tracheostoma nach Apoplex, stark desorientiert, manipuliert ständig an der Kanüle. Das frische OP-Gebiet ist geschwollen und entzündet. Die Kanüle ist schwer durchgängig, Frau Arnold zeigt Zeichen einer Dyspnoe. Der Arzt fordert Sie <strong>telefonisch</strong> auf, „das Ding" zu entfernen und einen Verband anzulegen.</div>
+<h4>Rechtliche und fachliche Einordnung</h4>
+<ul>
+<li>Das Entfernen einer Trachealkanüle bei <strong>frischem Tracheostoma</strong> ist ein ärztlicher Eingriff – nicht delegierbar</li>
+<li>Der Stomakanal ist noch nicht epithelisiert; nach Entfernung droht der <strong>Verschluss der Atemwege</strong></li>
+<li>Ein Verband über der einzigen Atemöffnung wäre <strong>lebensbedrohlich</strong></li>
+<li>Die Anordnung ist <strong>offensichtlich fehlerhaft</strong> → <strong>Remonstrationspflicht</strong></li>
+<li>Ausführung trotz erkannter Gefahr = <strong>Übernahmeverschulden</strong>, §229 und §222 StGB</li>
+<li>Eine telefonische Anordnung eines invasiven Eingriffs ohne eigene Untersuchung ist nicht ausreichend</li>
+</ul>
+<h4>Mein Handeln – Schritt für Schritt</h4>
+<ol>
+<li><strong>Ich führe die Anordnung nicht aus</strong> (Verweigerung und Remonstration)</li>
+<li>Ich <strong>begründe fachlich</strong>: frisches Stoma, Verschlussgefahr, Dyspnoe, entzündetes OP-Gebiet</li>
+<li>Ich <strong>fordere die persönliche Untersuchung</strong> durch den Arzt</li>
+<li><strong>Sofortmaßnahmen parallel</strong>: Oberkörperhochlagerung, Absaugen, Sauerstoffgabe nach Standard, Monitoring von SpO₂ und Atemfrequenz, Notfallset mit Ersatzkanüle bereitlegen, Patientin nicht allein lassen</li>
+<li>Bei Verschlechterung: <strong>Notruf beziehungsweise innerklinisches Notfallteam</strong></li>
+<li>Bei ausbleibender Reaktion <strong>eskalieren</strong>: Hintergrunddienst, Oberarzt, Pflegedienstleitung</li>
+<li>Alles <strong>dokumentieren</strong>: Uhrzeit, Wortlaut der Anordnung, meine Remonstration, Reaktion, Maßnahmen</li>
+<li><strong>Ursache der Manipulation</strong> angehen: Delir-Screening, Orientierungshilfen, Zuwendung, Sitzwache – nicht vorschnell fixieren</li>
+</ol>
+<div class="box bb"><b>Verantwortungskette</b>Arzt = Anordnungsverantwortung (Indikation stimmt nicht) · Pflegefachkraft = Übernahmeverantwortung (nicht qualifiziert, Anordnung gefährlich) → Remonstration und Verweigerung sind rechtlich geboten.</div>
+<div class="src">Quellen: I care Pflege, Thieme – Kapitel Rechtliche Grundlagen und Tracheostomapflege · Elsevier PFLEGEN Grundlagen und Interventionen · BGB §630d · StGB §§222, 223, 229, 239</div>
+</div></div>
+
+<!-- 7 -->
+<div class="c"><div class="ch"><span class="num">7</span><h2>Arten der Sterbehilfe</h2><span class="arw">▶</span></div><div class="cb">
+<div class="tags"><span class="tag k4">KB IV</span><span class="tag k5">KB V</span></div>
+<table>
+<tr><th>Form</th><th>Erklärung</th><th>Rechtslage in Deutschland</th></tr>
+<tr><td><strong>Aktive Sterbehilfe</strong><br>(Tötung auf Verlangen)</td><td>Gezielte Herbeiführung des Todes durch eine andere Person</td><td><strong>Verboten</strong> – §216 StGB, auch auf ausdrückliches Verlangen</td></tr>
+<tr><td><strong>Passive Sterbehilfe</strong><br>(Sterben zulassen)</td><td>Verzicht auf oder Beendigung lebensverlängernder Maßnahmen – Beatmung, künstliche Ernährung, Dialyse</td><td><strong>Zulässig</strong>, wenn es dem Patientenwillen entspricht – §1827 BGB Patientenverfügung</td></tr>
+<tr><td><strong>Indirekte Sterbehilfe</strong></td><td>Symptomlinderung, etwa hochdosierte Opioide, bei der eine Lebensverkürzung als Nebenfolge in Kauf genommen wird</td><td><strong>Zulässig</strong> – Ziel ist die Leidenslinderung, nicht der Tod</td></tr>
+<tr><td><strong>Beihilfe zur Selbsttötung</strong><br>(assistierter Suizid)</td><td>Bereitstellung eines Mittels, das der Betroffene <em>selbst</em> einnimmt – die Tatherrschaft liegt bei ihm</td><td>Straflos; §217 StGB wurde 2020 vom Bundesverfassungsgericht für nichtig erklärt, eine Neuregelung steht aus</td></tr>
+</table>
+<div class="box bo"><b>Abgrenzungskriterium</b>Entscheidend ist die <strong>Tatherrschaft</strong>: Wer führt die letzte, zum Tod führende Handlung aus? Bei aktiver Sterbehilfe ein Dritter, bei der Suizidassistenz der Betroffene selbst.</div>
+<h3>Haltung der Pflege</h3>
+<ul>
+<li>Todeswünsche <strong>ernst nehmen, nicht wegreden</strong> – nach der Not dahinter fragen: Schmerz, Angst, Einsamkeit, Kontrollverlust, Angst zur Last zu fallen</li>
+<li>Der <strong>ICN-Ethikkodex</strong> verpflichtet zur Leidenslinderung und zum Respekt vor Selbstbestimmung – nicht zur Lebensverlängerung um jeden Preis</li>
+<li>Niemand ist zur Mitwirkung an Suizidassistenz verpflichtet – <strong>Gewissensfreiheit Art. 4 GG</strong></li>
+<li>Die beste Antwort auf Todeswünsche ist ausgebaute <strong>Palliativversorgung</strong>: Schmerztherapie nach WHO-Stufenschema, Symptomkontrolle, SAPV nach §37b SGB V, Hospiz, psychosoziale und spirituelle Begleitung</li>
+<li>Immer im Team besprechen, <strong>ethische Fallbesprechung</strong> anregen, dokumentieren</li>
+</ul>
+<div class="src">Quellen: I care Pflege, Thieme – Kapitel Sterben, Tod und Trauer · Elsevier PFLEGEN Gesundheits- und Krankheitslehre · StGB §216 · BVerfG-Urteil vom 26.02.2020 zu §217 StGB · BGB §1827</div>
+</div></div>
+
+<!-- 8 -->
+<div class="c"><div class="ch"><span class="num">8</span><h2>Konfliktarten mit Pflegebeispielen</h2><span class="arw">▶</span></div><div class="cb">
+<div class="tags"><span class="tag k3">KB III</span><span class="tag">Aufgabe 7 und 8</span></div>
+<h3>Definition</h3>
+<p>Ein Konflikt liegt vor, wenn unvereinbare Ziele, Interessen, Wahrnehmungen oder Werte aufeinandertreffen und daraus eine Spannung zwischen Personen oder Gruppen entsteht.</p>
+<table>
+<tr><th>Konfliktart</th><th>Merkmal</th><th>Beispiel aus der Pflege</th></tr>
+<tr><td><strong>Sachkonflikt</strong></td><td>Uneinigkeit über Fakten, Inhalte oder das richtige Vorgehen</td><td>Zwei Pflegefachkräfte sind uneins, ob eine Wunde feucht oder trocken versorgt wird</td></tr>
+<tr><td><strong>Wahrnehmungs&shy;konflikt</strong></td><td>Dieselbe Situation wird unterschiedlich wahrgenommen und gedeutet</td><td>Eine Kollegin erlebt einen Bewohner als aggressiv, eine andere sieht Angst und Abwehr bei der Körperpflege</td></tr>
+<tr><td><strong>Rollenkonflikt</strong></td><td>Unklare oder widersprüchliche Erwartungen an eine Position</td><td>Die Auszubildende soll gleichzeitig lernen und als volle Arbeitskraft eingeplant werden</td></tr>
+<tr><td><strong>Zielkonflikt</strong></td><td>Zwei Ziele lassen sich nicht gleichzeitig erreichen</td><td>Aktivierende Pflege braucht Zeit, der Dienstplan verlangt Fertigstellung bis 9 Uhr</td></tr>
+<tr><td><strong>Wertekonflikt</strong></td><td>Unterschiedliche Werte, Überzeugungen oder kulturelle Prägungen</td><td>Die Tochter will den Vater zu Hause pflegen, weil man in ihrer Kultur die Eltern zu Hause pflegt; der Ehemann drängt auf die Heimaufnahme</td></tr>
+<tr><td><strong>Beziehungs&shy;konflikt</strong></td><td>Persönliche Spannungen, Antipathie, verletzte Gefühle</td><td>Zwei Kolleginnen sprechen nach einem früheren Streit nur noch das Nötigste – die Übergabe leidet</td></tr>
+</table>
+<h3>Weitere Konfliktarten</h3>
+<ul>
+<li><strong>Verteilungskonflikt</strong> – knappe Ressourcen: Dienstplan, Urlaub, Personal, Material</li>
+<li><strong>Innerer Konflikt</strong> – innerhalb einer Person: „Ich müsste remonstrieren, will aber keinen Ärger."</li>
+<li><strong>Intraprofessionell</strong> innerhalb der Pflege · <strong>Interprofessionell</strong> zwischen Berufsgruppen</li>
+<li><strong>Moralischer Stress</strong> – ich weiß, was fachlich richtig wäre, kann es strukturell aber nicht umsetzen</li>
+</ul>
+<h3>Lösungsorientierter Umgang</h3>
+<ol>
+<li>Konflikt frühzeitig <strong>ansprechen</strong>, unter vier Augen, nicht vor Patienten</li>
+<li><strong>Ich-Botschaften</strong> statt Vorwürfen</li>
+<li><strong>Aktiv zuhören</strong> und die Sichtweise des anderen wiedergeben</li>
+<li><strong>Sach- und Beziehungsebene trennen</strong></li>
+<li><strong>Gemeinsames Ziel</strong> benennen: die gute Versorgung des Patienten</li>
+<li><strong>Konkrete Vereinbarung</strong> treffen und Überprüfungstermin festlegen</li>
+<li>Bei Festfahren <strong>Leitung, Mediation oder Supervision</strong> einbeziehen</li>
+</ol>
+<div class="src">Quellen: I care Pflege, Thieme – Kapitel Kommunikation und Konflikte im Team · Elsevier PFLEGEN Grundlagen und Interventionen</div>
+</div></div>
+
+<!-- 9 -->
+<div class="c"><div class="ch"><span class="num">9</span><h2>EACH-Charta – Rechte von Kindern im Krankenhaus</h2><span class="arw">▶</span></div><div class="cb">
+<div class="tags"><span class="tag k4">KB IV</span><span class="tag k5">KB V</span><span class="tag">Aufgabe 9 und 10</span></div>
+<h3>Die 10 Artikel</h3>
+<table>
+<tr><th>Art.</th><th>Inhalt</th></tr>
+<tr><td>1</td><td>Krankenhausaufenthalt nur, wenn die Behandlung nicht ambulant oder zu Hause erfolgen kann</td></tr>
+<tr><td>2</td><td>Nähe und Sicherheit – Recht, Eltern oder eine Bezugsperson jederzeit bei sich zu haben</td></tr>
+<tr><td>3</td><td>Mitaufnahme einer Begleitperson, ohne zusätzliche Kosten für die Eltern</td></tr>
+<tr><td>4</td><td>Kindgerechte Information – dem Alter und Verständnis entsprechend</td></tr>
+<tr><td>5</td><td>Mitbeteiligung und Mitentscheidung bei allen Behandlungsentscheidungen</td></tr>
+<tr><td>6</td><td>Kindgerechte Umgebung, Betreuung gemeinsam mit Kindern derselben Entwicklungsstufe</td></tr>
+<tr><td>7</td><td>Unterstützung nach Alter und Entwicklungsstand – Spiel, Erholung, Schulbildung</td></tr>
+<tr><td>8</td><td>Personal mit qualifizierter pädiatrischer Ausbildung</td></tr>
+<tr><td>9</td><td>Kontinuität in der Betreuung durch ein möglichst kleines Team</td></tr>
+<tr><td>10</td><td>Behandlung mit Takt und Verständnis, Intimsphäre jederzeit respektieren</td></tr>
+</table>
+
+<h3>Beispielfall: Verstoß gegen Kinderrechte (Muster, ca. 300 Wörter)</h3>
+<div class="case">
+Der siebenjährige Elias wird am Abend wegen einer akuten Appendizitis stationär aufgenommen. Seine Mutter möchte bei ihm bleiben, doch die Stationsleitung erklärt, es sei kein Elternbett frei und Übernachtungen seien nur bis sechs Jahre vorgesehen. Die Mutter muss gegen 21 Uhr gehen. Elias wird in einem Zweibettzimmer mit einem 84-jährigen Patienten untergebracht, weil die Kinderstation belegt ist.<br><br>
+Am nächsten Morgen kommt die Visite. Die Ärztin spricht ausschließlich mit den Kollegen über „den Appendix in Zimmer 4" und verlässt das Zimmer, ohne Elias anzusprechen. Als er fragt, ob es wehtun wird, antwortet eine Pflegekraft im Vorbeigehen: „Das verstehst du sowieso nicht."<br><br>
+Vor der Operation wird Elias auf dem Flur auf der Trage abgestellt. Sein Bauch ist entblößt, mehrere Personen gehen vorbei. Niemand deckt ihn zu. Nach der Operation betreuen ihn innerhalb von zwei Tagen neun verschiedene Pflegende, keine davon mit pädiatrischer Weiterbildung. Spielangebote gibt es auf der Erwachsenenstation nicht.<br><br>
+<b>Verletzte Artikel:</b> Art. 2 und 3 (Nähe und Mitaufnahme verweigert), Art. 4 (keine kindgerechte Information), Art. 5 (keine Mitbeteiligung), Art. 6 (keine kindgerechte Umgebung), Art. 7 (keine Spiel- und Erholungsangebote), Art. 8 (kein pädiatrisch qualifiziertes Personal), Art. 9 (keine Kontinuität), Art. 10 (Intimsphäre missachtet).
+</div>
+
+<h3>Vergleich mit den vier ethischen Prinzipien</h3>
+<table>
+<tr><th>Ethisches Prinzip</th><th>Entsprechung in der EACH-Charta</th></tr>
+<tr><td><strong>Autonomie</strong></td><td>Art. 4 kindgerechte Information · Art. 5 Mitbeteiligung und Mitentscheidung – das Kind wird als eigenständiger Akteur ernst genommen, nicht nur die Eltern</td></tr>
+<tr><td><strong>Fürsorge</strong></td><td>Art. 2 Nähe und Sicherheit · Art. 3 Mitaufnahme · Art. 6 und 7 kindgerechte Umgebung und Förderung · Art. 8 qualifiziertes Personal</td></tr>
+<tr><td><strong>Nicht-Schaden</strong></td><td>Art. 1 Aufenthalt nur wenn nötig · Art. 9 Kontinuität · Art. 10 Takt und Verständnis – Vermeidung psychischer Schädigung durch Trennung und Angst</td></tr>
+<tr><td><strong>Gerechtigkeit</strong></td><td>Art. 3 keine Zusatzkosten für Eltern · Art. 8 gleicher Anspruch aller Kinder auf qualifizierte Betreuung, unabhängig von Herkunft und Einkommen</td></tr>
+</table>
+<div class="box bg"><b>Antwort in einem Satz</b>Die EACH-Charta konkretisiert die vier ethischen Prinzipien für die besondere Situation von Kindern im Krankenhaus – sie übersetzt abstrakte Ethik in überprüfbare Rechte.</div>
+<div class="src">Quellen: EACH-Charta, AKIK Bundesverband (akik.de) · Beauchamp &amp; Childress, Principles of Biomedical Ethics · I care Pflege, Thieme – Kapitel Ethik · Elsevier PFLEGEN Grundlagen und Interventionen</div>
+</div></div>
+
+<!-- 10 -->
+<div class="c"><div class="ch"><span class="num">10</span><h2>Fall Tommy – Berufsrolle, Burn-out und Fehlermanagement</h2><span class="arw">▶</span></div><div class="cb">
+<div class="tags"><span class="tag k3">KB III</span><span class="tag k5">KB V</span><span class="tag">Teilaufgaben b–k</span></div>
+<p style="font-size:13.5px;color:var(--dim)">Der vollständige Fall mit A1–A3 steht im Tab <strong>Fallsituationen</strong>.</p>
+
+<h3>b) Professionelle Rolle diskutieren</h3>
+<p><strong>Was für professionelles Handeln spricht:</strong></p>
+<ul>
+<li>Hohe Motivation und Lernbereitschaft – Fachbücher, Fortbildungsvideos</li>
+<li>Bereitschaft, Verantwortung zu übernehmen</li>
+<li>Er stellt erfahrenen Kolleginnen Fragen und erkennt damit eigene Wissensgrenzen</li>
+</ul>
+<p><strong>Wo die Professionalität verlassen wird:</strong></p>
+<ul>
+<li><strong>Fehlende professionelle Distanz</strong>: private Besorgungen für Patienten außerhalb der Dienstzeit – keine pflegerische Aufgabe, verwischt die Rollengrenze</li>
+<li><strong>Keine Selbstfürsorge</strong>: Freizeit, Hobbys und soziale Kontakte vollständig aufgegeben</li>
+<li><strong>Keine Grenzsetzung</strong>: ständiges Einspringen, dauerhaft längere Arbeitszeiten</li>
+<li><strong>Fehlende Remonstration</strong>: bei der telefonischen Adrenalin-Anordnung hätte er Bedenken äußern müssen → <strong>Übernahmeverschulden</strong></li>
+<li><strong>Fehlerkommunikation</strong>: der Dokumentationsfehler wurde nicht als Systemthema aufgearbeitet</li>
+</ul>
+<div class="box bb"><b>Fazit</b>Professionalität heißt nicht maximaler Einsatz, sondern <strong>reflektiertes Handeln innerhalb der eigenen Rolle und Kompetenzgrenzen</strong> – einschließlich der Fähigkeit, Nein zu sagen und zu remonstrieren.</div>
+
+<h3>c) Selbstfürsorge am Fallbeispiel</h3>
+<p><strong>Definition:</strong> Selbstfürsorge ist die bewusste Verantwortung für die eigene körperliche, psychische und soziale Gesundheit. Sie ist Voraussetzung für dauerhaft professionelle Pflege und im ICN-Ethikkodex ausdrücklich verankert.</p>
+<table>
+<tr><th>Was Tommy tut</th><th>Was Selbstfürsorge bedeutet hätte</th></tr>
+<tr><td>Arbeitet regelmäßig länger als geplant</td><td>Arbeitszeiten einhalten, Überstunden begrenzen und abbauen</td></tr>
+<tr><td>Liest in der Freizeit Fachbücher, schaut Fortbildungsvideos</td><td>Fortbildung ja, aber mit klarer Trennung von Erholungszeit</td></tr>
+<tr><td>Sagt Verabredungen ab, keine Hobbys mehr</td><td>Soziale Kontakte als Ressource bewusst pflegen</td></tr>
+<tr><td>Erledigt private Besorgungen für Patienten</td><td>Rollengrenzen wahren, Aufgaben an Sozialdienst oder Angehörige abgeben</td></tr>
+<tr><td>Behält Enttäuschung und Erschöpfung für sich</td><td>Supervision, kollegiale Beratung, Gespräch mit der Leitung suchen</td></tr>
+<tr><td>Springt ständig ein</td><td>Nein sagen können, Ausfallkonzept einfordern</td></tr>
+</table>
+
+<h3>d) Burn-out-Phasen nach Edelwich und Brodsky – am Fall belegt</h3>
+<table>
+<tr><th>Phase</th><th>Wesentliche Merkmale</th><th>Beleg bei Tommy</th></tr>
+<tr><td><strong>1 Idealistische Begeisterung</strong></td><td>Überhöhte Erwartungen, Überidentifikation mit der Arbeit, unrealistische Ziele, Vernachlässigung eigener Bedürfnisse</td><td>Traumstelle, will Medizin studieren, arbeitet länger, liest in der Freizeit Fachbücher, gibt Hobbys auf</td></tr>
+<tr><td><strong>2 Stagnation</strong></td><td>Erste Ernüchterung, die Arbeit erfüllt die Erwartungen nicht mehr, eigene Bedürfnisse melden sich zurück</td><td>Er merkt, wie belastend die Intensivstation ist: hohe Verantwortung, Zeitdruck, wechselnde Situationen</td></tr>
+<tr><td><strong>3 Frustration</strong></td><td>Gefühl von Sinnlosigkeit und fehlender Anerkennung, Konflikte mit Kollegen und Vorgesetzten, Zweifel an der eigenen Eignung</td><td>„Wenn Personal fehlt, bin ich gut genug. Aber für die Weiterbildung reicht es dann nicht." · Kritik der Kolleginnen · verweigerte Fachweiterbildung</td></tr>
+<tr><td><strong>4 Apathie</strong></td><td>Innere Kündigung, Rückzug, Gleichgültigkeit, Dienst nach Vorschrift, Fehler häufen sich</td><td>„Vielleicht bin ich einfach nicht geeignet." · „Ich kann nicht mehr." · zunehmende Fehler</td></tr>
+<tr><td><strong>5 Burn-out / Intervention</strong></td><td>Vollbild der Erschöpfung, körperliche Symptome, Arbeitsunfähigkeit – oder rechtzeitige Intervention</td><td>Zweiter schwerer Zwischenfall, fristlose Kündigung – Ausstieg statt Intervention</td></tr>
+</table>
+<div class="box bo"><b>Begründung</b>Tommys Verlauf entspricht dem Modell, <strong>weil</strong> die Entwicklung nicht mit einem einzelnen Ereignis beginnt, sondern mit <em>überhöhtem Idealismus</em> – und weil jede Phase durch fehlende Anerkennung und fehlende Selbstfürsorge in die nächste übergeht.</div>
+
+<h3>e) Hilfreiche Ratschläge für Tommy</h3>
+<ul>
+<li><strong>Zuerst zuhören, nicht raten</strong> – Beobachtung als Ich-Botschaft schildern und fragen, wie es ihm geht</li>
+<li><strong>Arbeitszeiten und Überstunden begrenzen</strong>, weil dauerhafte Mehrarbeit die Erholung verhindert</li>
+<li><strong>Rollengrenzen klären</strong>, weil private Besorgungen nicht zur pflegerischen Aufgabe gehören</li>
+<li><strong>Supervision und kollegiale Beratung</strong> nutzen, weil belastende Situationen sonst unverarbeitet bleiben</li>
+<li><strong>Betriebsarzt oder betriebliches Gesundheitsmanagement</strong> einschalten, weil bereits Warnzeichen bestehen</li>
+<li><strong>Soziale Kontakte reaktivieren</strong>, weil Freunde und Hobbys im Sinne der Salutogenese wichtige Ressourcen sind</li>
+<li><strong>Realistische Karriereplanung</strong>: Weiterbildung mit Zeitplan und schriftlicher Zusage klären</li>
+<li>Bei anhaltender Erschöpfung <strong>professionelle Hilfe</strong> in Anspruch nehmen</li>
+<li><strong>Fehler als Systemthema</strong> begreifen, nicht als persönliches Versagen</li>
+</ul>
+
+<h3>f) Intraprofessionelle Zusammenarbeit bewerten</h3>
+<p><strong>Tommy:</strong></p>
+<ul>
+<li>Positiv: fragt nach, sucht Unterstützung bei erfahrenen Kolleginnen</li>
+<li>Kritisch: nimmt die Kritik nicht als Hinweis auf Rollenüberschreitung an; äußert seine Überlastung nicht im Team, sondern nur gegenüber den Eltern; keine Remonstration bei der Adrenalin-Anordnung</li>
+</ul>
+<p><strong>Stationsleitung:</strong></p>
+<ul>
+<li>Reagiert mit <strong>Sanktion statt Analyse</strong> – „das musst du dir erst verdienen"</li>
+<li>Verknüpft die Fachweiterbildung mit Wohlverhalten → Machtgefälle statt Personalentwicklung</li>
+<li>Keine <strong>Fehleranalyse</strong>: Warum konnte der Dokumentationsfehler passieren? Personalschlüssel, Einarbeitung, Standards?</li>
+<li>Keine Wahrnehmung der <strong>Fürsorgepflicht</strong> trotz erkennbarer Überlastungszeichen</li>
+<li>Verstoß gegen die <strong>Organisationsverantwortung</strong></li>
+</ul>
+<div class="box br"><b>Bewertung</b>Die intraprofessionelle Zusammenarbeit ist gescheitert, <strong>weil</strong> weder Tommy seine Belastung ansprach noch die Leitung eine sanktionsfreie Fehler- und Feedbackkultur bereitstellte.</div>
+
+<h3>g) Ablauf eines guten Kritikgesprächs</h3>
+<ol>
+<li><strong>Vorbereitung</strong> – Fakten sammeln, Ziel festlegen, ruhiger Raum, ausreichend Zeit, unter vier Augen, zeitnah</li>
+<li><strong>Positiver Einstieg</strong> – Gesprächsanlass benennen, wertschätzenden Rahmen setzen</li>
+<li><strong>Sachliche Beschreibung</strong> – konkretes Verhalten schildern, nicht die Person bewerten, Ich-Botschaften</li>
+<li><strong>Sichtweise anhören</strong> – aktiv zuhören, ausreden lassen, nachfragen</li>
+<li><strong>Ursachen gemeinsam analysieren</strong> – auch Rahmenbedingungen und Systemursachen prüfen</li>
+<li><strong>Lösungen gemeinsam entwickeln</strong> – Vorschläge des Mitarbeitenden zuerst</li>
+<li><strong>Konkrete Vereinbarung</strong> – wer, was, bis wann; Unterstützung anbieten</li>
+<li><strong>Positiver Abschluss</strong> – Wertschätzung und Zuversicht</li>
+<li><strong>Folgetermin</strong> festlegen und das Gespräch dokumentieren</li>
+</ol>
+<div class="box bg"><b>Regeln</b>Kritik am <strong>Verhalten</strong>, nicht an der Person · zeitnah · unter vier Augen · sachlich · konkret · zukunftsorientiert · immer mit Lösungsangebot.</div>
+
+<h3>h) Fehlerkultur, Fehlerlenkung, Fehlerkorrektur</h3>
+<table>
+<tr><th>Begriff</th><th>Bedeutung</th></tr>
+<tr><td><strong>Fehlerkultur</strong></td><td>Die Grundhaltung einer Organisation gegenüber Fehlern: Werden sie offen angesprochen und zum Lernen genutzt oder verschwiegen und bestraft? Eine positive Fehlerkultur ist <strong>offen, sanktionsfrei und lernorientiert</strong>.</td></tr>
+<tr><td><strong>Fehlerlenkung</strong></td><td>Der <strong>systematische Umgang</strong> mit einem aufgetretenen Fehler: erkennen, melden, dokumentieren, bewerten, Ursachen analysieren, Maßnahmen ableiten und deren Wirksamkeit überprüfen. Instrumente: CIRS, Beinahefehlermeldung, Fallbesprechung, Qualitätszirkel.</td></tr>
+<tr><td><strong>Fehlerkorrektur</strong></td><td>Die <strong>konkrete Behebung</strong> des Fehlers und seiner Folgen im Einzelfall: Sofortmaßnahmen für den Patienten, Arzt informieren, Dokumentation nachvollziehbar berichtigen – Korrekturen müssen erkennbar bleiben, sonst §267 StGB.</td></tr>
+</table>
+
+<h3>i) Fallsituation im Kontext Fehlermanagement</h3>
+<ul>
+<li>Der Dokumentationsfehler wird <strong>personalisiert</strong> statt analysiert – typische Schuldkultur</li>
+<li>Die Reaktion erzeugt <strong>Angst</strong>; Angst führt dazu, dass Fehler künftig verschwiegen werden</li>
+<li>Nach dem <strong>Schweizer-Käse-Modell (James Reason)</strong> ist der Schaden das Ergebnis mehrerer Systemlücken: Personalmangel, ständiges Einspringen, Übermüdung, fehlende Einarbeitung, telefonische Anordnung ohne Rückversicherung</li>
+<li>Es fehlt: <strong>CIRS-Meldung</strong>, strukturierte Fallanalyse, Standard für telefonische Anordnungen, <strong>Doppelkontrolle bei Hochrisikomedikamenten</strong> wie Adrenalin</li>
+<li>Auch der Arzt trägt <strong>Anordnungsverantwortung</strong> für eine telefonisch angeordnete intravenöse Adrenalingabe</li>
+</ul>
+<div class="box br"><b>Bewertung in einem Satz</b>Die Einrichtung betreibt <strong>Fehlerbestrafung statt Fehlermanagement</strong> – dadurch bleibt die eigentliche Ursache unbearbeitet und der nächste Patient ist nicht sicherer als der vorige.</div>
+
+<h3>j) Verantwortungsarten am Fall</h3>
+<table>
+<tr><th>Verantwortungsart</th><th>Bedeutung</th><th>Am Fall</th></tr>
+<tr><td><strong>Anordnungs&shy;verantwortung</strong></td><td>Arzt: Diagnose, Indikation, Kompetenz der beauftragten Person prüfen</td><td>Der Arzt ordnet Adrenalin i.v. <strong>telefonisch</strong> an, ohne die Situation zu beurteilen und ohne Tommys Qualifikation zu prüfen</td></tr>
+<tr><td><strong>Delegations&shy;verantwortung</strong></td><td>Auswahl einer geeigneten Person, Einweisung, Überwachung</td><td>Keine Einweisung, keine Rückversicherung, keine Anwesenheit bei einem Hochrisikomedikament</td></tr>
+<tr><td><strong>Übernahme&shy;verantwortung</strong></td><td>„Ich bin qualifiziert" – eigene Kompetenz vor der Übernahme prüfen</td><td>Tommy übernimmt die Anordnung ohne Rückfrage, obwohl er 14 Monate im Beruf und ohne Fachweiterbildung ist</td></tr>
+<tr><td><strong>Durchführungs&shy;verantwortung</strong></td><td>„Ich arbeite sorgfältig nach aktuellem Wissensstand"</td><td>Betrifft beides: die versäumte Bilanzierung des Stundenurins und die Ausführung der Adrenalingabe</td></tr>
+<tr><td><strong>Übernahme&shy;verschulden</strong></td><td>Schuldhafte Übernahme einer Aufgabe, für die man nicht qualifiziert ist</td><td>Liegt vor: Tommy hätte remonstrieren und die persönliche Anwesenheit des Arztes verlangen müssen</td></tr>
+<tr><td><strong>Organisations&shy;verschulden</strong></td><td>Träger und Leitung: unzureichende Strukturen</td><td>Personalmangel, ständiges Einspringen, fehlender Standard für telefonische Anordnungen, keine Fehlerkultur</td></tr>
+</table>
+
+<h3>k) Eigene Prüfungsfragen mit der Operatorenliste</h3>
+<table>
+<tr><th>AFB</th><th>Beispielfrage zum Fall</th></tr>
+<tr><td>I</td><td><strong>Nennen</strong> Sie die Personen, die in der Fallsituation vorkommen.</td></tr>
+<tr><td>I</td><td><strong>Definieren</strong> Sie den Begriff Übernahmeverschulden.</td></tr>
+<tr><td>I</td><td><strong>Fassen</strong> Sie <strong>zusammen</strong>, wie es zur Kündigung von Tommy gekommen ist.</td></tr>
+<tr><td>I</td><td><strong>Ordnen</strong> Sie Tommys Verhaltensweisen den Phasen nach Edelwich und Brodsky <strong>zu</strong>.</td></tr>
+<tr><td>II</td><td><strong>Ermitteln</strong> Sie, welche Systemursachen zu dem Dokumentationsfehler beigetragen haben.</td></tr>
+<tr><td>II</td><td><strong>Erklären</strong> Sie den Zusammenhang zwischen fehlender Selbstfürsorge und Fehlerhäufigkeit.</td></tr>
+<tr><td>II</td><td><strong>Vergleichen</strong> Sie die Sichtweise Tommys mit der Sichtweise der Stationsleitung.</td></tr>
+<tr><td>II</td><td><strong>Wenden</strong> Sie das Schweizer-Käse-Modell auf die Adrenalingabe <strong>an</strong>.</td></tr>
+<tr><td>III</td><td><strong>Begründen</strong> Sie, warum Tommy bei der telefonischen Anordnung hätte remonstrieren müssen.</td></tr>
+<tr><td>III</td><td><strong>Diskutieren</strong> Sie, ob die fristlose Kündigung eine angemessene Reaktion war.</td></tr>
+<tr><td>III</td><td><strong>Beziehen</strong> Sie <strong>Stellung</strong> zu der Aussage: „Wer Fehler macht, ist für die Intensivpflege nicht geeignet."</td></tr>
+<tr><td>III</td><td><strong>Entwickeln</strong> Sie ein Unterstützungskonzept für Berufseinsteiger auf einer Intensivstation.</td></tr>
+<tr><td>III</td><td><strong>Deuten</strong> Sie, wie die Kolleginnen die Situation erleben.</td></tr>
+</table>
+<div class="src">Quellen: Edelwich &amp; Brodsky, Ausgebrannt – Das Burn-out-Syndrom in den Helfenden Berufen · Reason J., Human Error · I care Pflege, Thieme – Kapitel Berufliches Selbstverständnis, Stress und Burn-out · Elsevier PFLEGEN Grundlagen und Interventionen · Aktionsbündnis Patientensicherheit (CIRS)</div>
+</div></div>
+</div>
+
+<!-- ════ FÄLLE ════ -->
+<div class="tab" id="tab-f">
+<div class="tools"><button onclick="all(1)">Alle öffnen</button><button onclick="all(0)">Alle schließen</button></div>
+
+<div class="c"><div class="ch"><span class="num">269</span><h2>Familie Wasner-Campone – ambulante Pflege</h2><span class="arw">▶</span></div><div class="cb">
+<h3>A1 – Zusammenfassung (Musterformulierung)</h3>
+<div class="case">
+Im Fall geht es um <b>Herrn Campone, 63 Jahre alt</b>, und seine Familie, die sich in der <b>häuslichen Umgebung im Rahmen der ambulanten Pflege</b> befinden. Berichtet wird aus Sicht von <b>Katharina</b>, einer seit zwei Wochen examinierten Pflegefachfrau des ambulanten Pflegedienstes SOS, die an diesem Tag eine <b>Praktikantin</b> begleitet.<br><br>
+Der Grund der pflegerischen Versorgung ist ein <b>Schlaganfall</b> mit den Folgen <b>Hemiparese rechts, Dysphagie sowie Harn- und Stuhlinkontinenz</b>. Herr Campone versteht Deutsch, spricht aber nur Italienisch. Er lehnt die Unterstützung des Pflegedienstes ab und beschimpft deswegen häufig seine Tochter.<br><br>
+Beschreibung der Situation: <b>Frau Wasner-Campone, 43 Jahre</b>, pflegt ihren Vater zusätzlich zu vier Kindern im Alter von 6, 8, 11 und 15 Jahren und einer Teilzeitstelle von 30 Wochenstunden im Verkauf. Beim heutigen Besuch weint sie. Ihr <b>Ehemann</b> erklärt aufgebracht, es reiche, der Schwiegervater komme jetzt ins Heim. Die <b>Praktikantin</b> stimmt vorschnell zu. Frau Wasner-Campone lehnt die Heimunterbringung strikt ab und verweist auf ihre kulturelle Prägung. Im Pflegezimmer weist Herr Campone die Pflegefachfrau wütend ab. Die Praktikantin äußert daraufhin Zweifel, ob man jemanden gegen seinen Willen waschen dürfe. Katharina erlebt die gesamte Situation als unprofessionell und belastend.<br><br>
+Diese möglichen Themen enthält der Fall: <b>pflegende Angehörige und Überlastung, Vereinbarkeit von Pflege, Beruf und Familie, Entlastungsangebote nach SGB XI, kultursensible Pflege, Autonomie und Einwilligung nach §630d BGB, Ablehnung von Pflege, Kommunikation bei Sprachbarriere, Konfliktarten, professionelle Rolle und Distanz, Anleitung von Praktikanten, Beratung nach §7a SGB XI, Pflege bei Apoplex, Dysphagie und Aspirationsprophylaxe, Inkontinenzversorgung.</b>
+</div>
+<h3>A2 und A3 – Perspektivwechsel</h3>
+<table>
+<tr><th>Akteur</th><th>Sichtweise – Erleben und Fühlen (A2)</th><th>Handlung (A3)</th></tr>
+<tr><td><strong>Herr Campone</strong><br>63 J.</td><td>Erlebt einen massiven Verlust an Selbstständigkeit und ist bei intimsten Verrichtungen auf Fremde angewiesen. Fühlt sich beschämt, ausgeliefert und hilflos. Die Sprachbarriere verstärkt das Gefühl, nicht verstanden zu werden und die Kontrolle zu verlieren</td><td>Lehnt die Pflege ab, zeigt die Faust und ruft „Geh weg". Er wehrt die Pflege ab und richtet seine Wut gegen die Tochter, weil sie die für ihn beschämende Situation herbeigeführt hat</td></tr>
+<tr><td><strong>Frau Wasner-Campone</strong><br>43 J.</td><td>Fühlt sich zerrissen zwischen Vater, Ehemann, vier Kindern und Beruf. Erlebt Erschöpfung, Schuldgefühle und den Druck einer kulturellen Verpflichtung: Eltern pflegt man zu Hause. Fühlt sich von ihrem Mann nicht verstanden und von der Praktikantin übergangen</td><td>Weint, widerspricht dem Ehemann heftig mit „Niemals" und hält an der häuslichen Pflege fest – auch entgegen ihrer eigenen Belastungsgrenze</td></tr>
+<tr><td><strong>Ehemann</strong></td><td>Erlebt seit Monaten die Erschöpfung und das Leid seiner Frau und fühlt sich ohnmächtig. Nimmt den Schwiegervater als Belastung und als Bedrohung des Familienfriedens wahr. Empfindet Wut und Sorge zugleich</td><td>Wird aufgebracht, spricht laut vor allen Anwesenden und trifft eine einseitige Entscheidung: „Er kommt jetzt ins Heim." Er handelt, um seine Frau zu schützen</td></tr>
+<tr><td><strong>Praktikantin</strong></td><td>Ist unerfahren, will hilfsbereit sein und dazugehören. Erlebt die Situation als eindeutig und meint, eine sinnvolle Lösung zu bestätigen. Zugleich verunsichert sie, dass ihre Kollegin auf einen abwehrenden Patienten zugeht – sie hat gelernt, dass niemand gegen seinen Willen gewaschen werden darf</td><td>Kommentiert vorschnell „Das ist doch eine gute Lösung" und stellt danach vor der Familie und dem Patienten das Handeln der Pflegefachfrau in Frage</td></tr>
+<tr><td><strong>Katharina</strong><br>2 Wochen examiniert</td><td>Fühlt sich in der neuen Rolle überfordert: sie soll gleichzeitig deeskalieren, pflegen, beraten und anleiten. Erlebt die Situation als unprofessionell und belastend und ist unsicher, ob sie richtig gehandelt hat</td><td>Versucht zunächst alle zu beruhigen, vertagt das Gespräch bewusst auf einen ruhigeren Zeitpunkt und geht dennoch auf Herrn Campone zu. Innerlich zieht sie sich zurück</td></tr>
+</table>
+<h3>Mögliche Fragen im dialogischen Teil</h3>
+<ul>
+<li><strong>Begründen</strong> Sie, ob Katharina Herrn Campone gegen seinen Willen waschen darf → §630d BGB, §223 StGB, Autonomie; Ablehnung akzeptieren, Ursache klären, später erneut anbieten, dokumentieren</li>
+<li><strong>Entwickeln</strong> Sie ein Entlastungsangebot für Frau Wasner-Campone → Pflegeberatung §7a, Tagespflege §41, Verhinderungspflege §39, Kurzzeitpflege §42, Entlastungsbetrag §45b, Pflegekurse §45, Selbsthilfegruppe, italienischsprachiger Pflegedienst</li>
+<li><strong>Ermitteln</strong> Sie die vorliegenden Konfliktarten → Wertekonflikt, Beziehungskonflikt, Rollenkonflikt, Zielkonflikt zwischen Autonomie und Fürsorge</li>
+<li><strong>Erklären</strong> Sie, wie Sie die Praktikantin anleiten würden → nicht vor Patient und Familie korrigieren, Nachbesprechung unter vier Augen, Rolle und Schweigepflicht klären</li>
+<li><strong>Beurteilen</strong> Sie die Kommunikation bei Sprachbarriere → professioneller Dolmetscher statt Angehöriger, einfache Sprache, nonverbale Signale, Zeit lassen</li>
+</ul>
+<div class="src">Fallsituation 269 aus der EFSA Lernbroschüre cE 1.8, S. 10 · Fachliche Grundlagen: I care Pflege, Thieme · Elsevier PFLEGEN Grundlagen und Interventionen · SGB XI</div>
+</div></div>
+
+<div class="c"><div class="ch"><span class="num">T</span><h2>Fall Tommy – Intensivstation</h2><span class="arw">▶</span></div><div class="cb">
+<div class="box bo"><b>Hinweis</b>Wegen der Fallgröße erhöht sich die Bearbeitungszeit auf <strong>25 Minuten</strong>. Timer stellen und die Vorlage nutzen.</div>
+<h3>A1 – Zusammenfassung (Musterformulierung)</h3>
+<div class="case">
+Im Fall geht es um <b>Tommy</b>, einen examinierten Pflegefachmann, der sich auf einer <b>interdisziplinären Intensivstation eines kleinen Krankenhauses</b> befindet – 20 Betten, davon sechs Beatmungsplätze. Er arbeitet dort seit 14 Monaten.<br><br>
+Der Grund der Situation ist eine über Monate gewachsene <b>berufliche Überlastung und Enttäuschung</b>. Tommy trat die Stelle mit hohen Erwartungen an: er wollte sich weiterentwickeln, eventuell Medizin studieren, und ihm wurde die Fachweiterbildung Intensivpflege und Anästhesie in Aussicht gestellt.<br><br>
+Beschreibung der Situation: Tommy arbeitet regelmäßig länger, liest in der Freizeit Fachliteratur, gibt Hobbys und Freundschaften auf und erledigt außerhalb der Dienstzeit private Besorgungen für Patienten, wofür ihn die <b>Kolleginnen</b> kritisieren. Ihm unterläuft ein <b>Dokumentationsfehler</b>: der Stundenurin wird nicht rechtzeitig entleert und bilanziert, ein beginnendes Nierenversagen wird zu spät erkannt, der <b>Stationsarzt</b> beschwert sich. Der <b>Stationsleiter</b> verweigert daraufhin die Fachweiterbildung. Tommy zweifelt an seiner Eignung und äußert gegenüber seinen <b>Eltern</b> Erschöpfung. Zwei Wochen später verabreicht er auf <b>telefonische Anweisung des Arztes</b> Adrenalin intravenös; es kommt zu lebensbedrohlichen Komplikationen. Tommy wird fristlos entlassen.<br><br>
+Diese möglichen Themen enthält der Fall: <b>berufliches Selbstverständnis und professionelle Rolle, Selbstfürsorge, Burn-out nach Edelwich und Brodsky, Fehlerkultur und Fehlermanagement, CIRS, Anordnungs-, Übernahme- und Durchführungsverantwortung, Remonstrationsrecht und -pflicht, Delegation, intraprofessionelle Zusammenarbeit, Führung und Kritikgespräch, Organisationsverantwortung und Organisationsverschulden, Fort- und Weiterbildung, Arbeitsbedingungen in der Pflege.</b>
+</div>
+<h3>A2 und A3 – Perspektivwechsel</h3>
+<table>
+<tr><th>Akteur</th><th>Sichtweise – Erleben und Fühlen (A2)</th><th>Handlung (A3)</th></tr>
+<tr><td><strong>Tommy</strong></td><td>Erlebt die Stelle zunächst als Traumerfüllung und will sich beweisen. Später fühlt er sich ausgenutzt, nicht anerkannt und zunehmend erschöpft: „Wenn Personal fehlt, bin ich gut genug." Zweifelt an der eigenen Eignung, empfindet Scham über den Fehler und Hoffnungslosigkeit</td><td>Arbeitet über die Belastungsgrenze, gibt das Privatleben auf, übernimmt patientenferne Aufgaben, führt die telefonische Anordnung ohne Rückfrage aus und spricht seine Not nur gegenüber den Eltern aus</td></tr>
+<tr><td><strong>Kolleginnen</strong></td><td>Nehmen Tommys Verhalten als Grenzüberschreitung und als Druck auf das Team wahr. Möglicherweise auch Sorge um ihn oder Unmut, weil sein Einsatz einen Maßstab setzt, den sie nicht mittragen wollen</td><td>Kritisieren ihn und weisen darauf hin, dass private Besorgungen nicht zu seinen Aufgaben gehören. Sie sprechen die Belastung an, aber nicht seine Erschöpfung</td></tr>
+<tr><td><strong>Stationsleiter</strong></td><td>Erlebt sich unter Druck: Beschwerde des Arztes, Verantwortung für Patientensicherheit und Stationsorganisation. Sieht den Fehler als individuelles Verschulden und mangelnde Reife</td><td>Lädt Tommy zum Gespräch, verweigert die Fachweiterbildung und knüpft sie an gewissenhafteres Arbeiten. Sanktioniert, statt Ursachen zu analysieren</td></tr>
+<tr><td><strong>Stationsarzt</strong></td><td>Erlebt die verspätete Erkennung des Nierenversagens als vermeidbare Gefährdung und ist verärgert, weil sein Behandlungsplan erschwert wird. Beim späteren Vorfall handelt er unter Zeitdruck und vertraut auf die Kompetenz der Pflege</td><td>Beschwert sich über Tommy und ordnet später telefonisch eine intravenöse Adrenalingabe an, ohne die Situation persönlich zu beurteilen</td></tr>
+<tr><td><strong>Eltern</strong></td><td>Erleben ihren Sohn als verändert, erschöpft und entmutigt. Empfinden Sorge und Hilflosigkeit, weil sie den beruflichen Kontext nicht beeinflussen können</td><td>Hören zu und bieten den einzigen Raum, in dem Tommy seine Belastung ausspricht – ohne dass daraus eine Veränderung folgt</td></tr>
+</table>
+<div class="src">Übungsfall aus der EFSA Lernbroschüre cE 1.8, S. 11–14. Die Teilaufgaben b bis k stehen im Tab Aufgaben unter Nummer 10.</div>
+</div></div>
+
+<div class="c"><div class="ch"><span class="num">🎬</span><h2>Übung Simon's Cat – Perspektivwechsel trainieren</h2><span class="arw">▶</span></div><div class="cb">
+<p>Die Broschüre nutzt den Kurzfilm <em>Cat Man Do – Simon's Cat</em> als niedrigschwellige Übung für A1 bis A3. Der Sinn: Perspektivwechsel üben, wenn kein Fachwissen ablenkt.</p>
+<h3>Worauf es bei dieser Übung ankommt</h3>
+<ul>
+<li>Setting und Akteure sauber benennen</li>
+<li>Sichtweise beschreiben, ohne zu bewerten</li>
+<li>Vom Erleben auf die Handlung schließen – die Kernbewegung von A2 zu A3</li>
+<li>Die Themenwahl begründen</li>
+</ul>
+<div class="box bg"><b>Transfer</b>Dieselbe Denkbewegung wird bei jedem Pflegefall verlangt: Wer? → Wie erlebt die Person? → Was tut sie deshalb?</div>
+<div class="src">Quelle: EFSA Lernbroschüre cE 1.8, Aufgabe 2, S. 9</div>
+</div></div>
+</div>
+
+<!-- ════ WEITERE ════ -->
+<div class="tab" id="tab-w">
+<div class="tools"><button onclick="all(1)">Alle öffnen</button><button onclick="all(0)">Alle schließen</button></div>
+
+<div class="c"><div class="ch"><span class="num">III</span><h2>KB III – Weitere Flipchart-Themen</h2><span class="arw">▶</span></div><div class="cb">
+<div class="tags"><span class="tag k3">III.1</span><span class="tag k3">III.2</span><span class="tag k3">III.3</span></div>
+
+<h3>Vorbehaltene Tätigkeiten – §4 PflBG</h3>
+<p>Nur Pflegefachpersonen dürfen diese Aufgaben ausüben; sie sind <strong>nicht delegierbar</strong>:</p>
+<ul>
+<li>Erhebung und Feststellung des individuellen Pflegebedarfs – Assessment, Pflegediagnose, Planung</li>
+<li>Organisation, Gestaltung und Steuerung des Pflegeprozesses</li>
+<li>Analyse, Evaluation, Sicherung und Entwicklung der Pflegequalität</li>
+</ul>
+<div class="box bb">Der Verbandswechsel ist <strong>keine</strong> vorbehaltene Tätigkeit. Vorbehalten ist der steuernde Kopf des Pflegeprozesses, nicht die einzelne Handreichung.</div>
+
+<h3>6-R-Regel der Medikamentengabe</h3>
+<table>
+<tr><th>R</th><th>Regel</th><th>Worauf achten?</th></tr>
+<tr><td>1</td><td>Richtiger <strong>Patient</strong></td><td>Identitätskontrolle: Name, Geburtsdatum, Armband – nie nur der Bettplatz</td></tr>
+<tr><td>2</td><td>Richtiges <strong>Medikament</strong></td><td>Anordnung und Beschriftung prüfen; Wirkstoff ist nicht gleich Handelsname (LASA-Verwechslungen)</td></tr>
+<tr><td>3</td><td>Richtige <strong>Dosis</strong></td><td>Berechnen und doppelt prüfen; Einheit beachten (mg, µg, IE)</td></tr>
+<tr><td>4</td><td>Richtiger <strong>Zeitpunkt</strong></td><td>Zeitangabe der Anordnung, Bezug zur Mahlzeit, Intervall</td></tr>
+<tr><td>5</td><td>Richtiger <strong>Weg</strong> (Applikation)</td><td>oral, i.v., s.c., i.m., inhalativ, transdermal, rektal</td></tr>
+<tr><td>6</td><td>Richtige <strong>Dokumentation</strong></td><td>Immer <strong>nach</strong> der Gabe abzeichnen – niemals vorher</td></tr>
+</table>
+<h4>Erweiterte R (je nach Quelle bis 10 R)</h4>
+<ul>
+<li>Richtige <strong>Anwendungsdauer</strong> – Therapiedauer einhalten, nicht eigenmächtig verkürzen</li>
+<li>Richtiges <strong>Wirkungsmonitoring</strong> – erwartete Wirkung und Nebenwirkungen beobachten</li>
+<li>Richtige <strong>Aufklärung</strong> – Patient ist informiert und einverstanden</li>
+<li>Richtige <strong>Entsorgung</strong> – Reste und BTM fachgerecht entsorgen</li>
+</ul>
+<div class="box bo"><b>Für die Prüfung</b>Die <strong>6-R-Regel</strong> ist der verbindliche Kern und muss vollständig genannt werden können. Die zusätzlichen R sind Erweiterungen einzelner Quellen – man kann sie nennen, sollte aber klar zwischen Kernregel und Erweiterung unterscheiden.</div>
+<h4>Vor jeder Gabe zusätzlich prüfen</h4>
+<ul>
+<li>Verfallsdatum, Aussehen, Beschriftung</li>
+<li>Allergien des Patienten</li>
+<li>Wechselwirkungen und Kontraindikationen</li>
+<li>Bei Hochrisikomedikamenten (Insulin, Antikoagulanzien, Opioide, Katecholamine) Doppelkontrolle</li>
+</ul>
+<div class="box br"><b>Niemals mörsern</b>Retardtabletten (Überdosierung), magensaftresistente Präparate (Wirkstoff wird inaktiviert), Zytostatika (Gefährdung der Pflegekraft). Im Zweifel Rücksprache mit Arzt und Apotheke.</div>
+
+<h3>Schnittstellen und Überleitung</h3>
+<ul>
+<li><strong>Entlassungsmanagement</strong> nach §39 Abs. 1a SGB V und Expertenstandard des DNQP – beginnt am Aufnahmetag</li>
+<li><strong>Pflegeüberleitungsbogen</strong>: Diagnosen, Pflegegrad, Pflegebedarf und Ressourcen, Mobilität, Haut und Wunden, Ausscheidung, Kostform, Medikation, Zugänge und Sonden, Hilfsmittel, Kontaktpersonen, Betreuung und Vollmachten</li>
+<li>Beteiligte: Sozialdienst, ambulanter Pflegedienst, Physio- und Ergotherapie, Sanitätshaus, Hausarzt, Pflegestützpunkt nach §7c SGB XI</li>
+<li><strong>Rehabilitationsphasen A bis F</strong> – Übergänge sichern, besonders nach Apoplex</li>
+</ul>
+
+<h3>SBAR – strukturierte Übergabe</h3>
+<table>
+<tr><th>S</th><td>Situation – was ist gerade das Problem?</td></tr>
+<tr><th>B</th><td>Background – relevante Vorgeschichte</td></tr>
+<tr><th>A</th><td>Assessment – meine fachliche Einschätzung</td></tr>
+<tr><th>R</th><td>Recommendation – was ich brauche oder vorschlage</td></tr>
+</table>
+
+<h3>Berufsgruppen im interdisziplinären Team</h3>
+<table>
+<tr><th>Berufsgruppe</th><th>Wofür hinzuziehen?</th></tr>
+<tr><td>Arzt</td><td>Diagnose, Therapie, Anordnung, Aufklärung</td></tr>
+<tr><td>Physiotherapie</td><td>Mobilisation, Atemtherapie, Gangschulung</td></tr>
+<tr><td>Ergotherapie</td><td>ADL-Training, Hilfsmittelversorgung, Wohnraumanpassung</td></tr>
+<tr><td>Logopädie</td><td>Dysphagie, Kostformberatung, Aphasie</td></tr>
+<tr><td>Sozialdienst</td><td>Entlassung, Sozialleistungen, Heimplatz, Beratung</td></tr>
+<tr><td>Diätassistenz</td><td>Ernährungsberatung, Kostaufbau, Mangelernährung</td></tr>
+<tr><td>Apotheke</td><td>Wechselwirkungen, Arzneimittelinformation, BTM</td></tr>
+<tr><td>Seelsorge und Psychologie</td><td>Krisen, Sterbebegleitung, Angehörigenbegleitung</td></tr>
+</table>
+
+<h3>Stress-, Zeit- und Fehlermanagement</h3>
+<ul>
+<li><strong>Stressmodell nach Lazarus</strong>: primäre Bewertung (Ist die Situation bedrohlich?) · sekundäre Bewertung (Reichen meine Ressourcen?) · Coping problem- oder emotionsorientiert · Neubewertung</li>
+<li><strong>Priorisierung</strong>: Eisenhower-Prinzip dringend/wichtig, Tagesstrukturierung mit Pufferzeiten</li>
+<li><strong>CIRS</strong>: anonym, sanktionsfrei, vertraulich, lernorientiert – auch Beinahefehler melden</li>
+<li><strong>Schweizer-Käse-Modell nach Reason</strong>: der Schaden entsteht, wenn mehrere Sicherheitsbarrieren gleichzeitig Lücken aufweisen</li>
+<li><strong>Team-Timeout</strong>: Wer Sicherheitsbedenken hat, darf jederzeit stoppen</li>
+</ul>
+<div class="src">Quellen: I care Pflege, Thieme – Kapitel Arzneimitteltherapie, Rechtliche Grundlagen, Kommunikation im Team · Elsevier PFLEGEN Grundlagen und Interventionen · PflBG §4 · SGB V §39 · DNQP Expertenstandard Entlassungsmanagement · Lazarus, Stress and Coping · Reason, Human Error</div>
+</div></div>
+
+<div class="c"><div class="ch"><span class="num">IV</span><h2>KB IV – Gesetze, Verordnungen und ethische Leitlinien</h2><span class="arw">▶</span></div><div class="cb">
+<div class="tags"><span class="tag k4">IV.1</span><span class="tag k4">IV.2</span></div>
+
+<h3>Grundgesetz</h3>
+<table>
+<tr><th>Art.</th><th>Inhalt</th><th>Bedeutung für die Pflege</th></tr>
+<tr><td>1</td><td>Die Würde des Menschen ist unantastbar</td><td>Fundament aller Patientenrechte; keine entwürdigende Pflege, keine Bloßstellung</td></tr>
+<tr><td>2</td><td>Freie Entfaltung; Recht auf Leben, körperliche Unversehrtheit und Freiheit der Person</td><td>Grundlage der Einwilligungspflicht und des Rechts auf Ablehnung; jede FEM ist ein Eingriff</td></tr>
+<tr><td>3</td><td>Gleichheit vor dem Gesetz, Diskriminierungsverbot</td><td>Gleiche Versorgung unabhängig von Herkunft, Geschlecht, Religion, Behinderung, Versicherungsstatus</td></tr>
+<tr><td>4</td><td>Glaubens-, Gewissens- und Religionsfreiheit</td><td>Religiöse Ablehnung einer Behandlung respektieren; Gewissensfreiheit auch der Pflegenden</td></tr>
+<tr><td>13</td><td>Unverletzlichkeit der Wohnung</td><td>Ambulante Pflege: klingeln, warten, Hausrecht des Patienten achten</td></tr>
+</table>
+
+<h3>BGB – Behandlungsvertrag und Patientenrechte</h3>
+<table>
+<tr><th>§</th><th>Inhalt</th><th>Für die Pflege</th></tr>
+<tr><td>630a</td><td>Behandlungsvertrag</td><td>Behandlung nach allgemein anerkanntem fachlichen Standard – Expertenstandards, EBN</td></tr>
+<tr><td>630d</td><td>Einwilligung</td><td>Jede Maßnahme braucht Zustimmung, auch die Körperpflege</td></tr>
+<tr><td>630e</td><td>Aufklärung</td><td>Mündlich, verständlich, rechtzeitig vor der Maßnahme</td></tr>
+<tr><td>630f</td><td>Dokumentation</td><td>Zeitnah, vollständig, 10 Jahre Aufbewahrung; Berichtigungen müssen erkennbar bleiben</td></tr>
+<tr><td>630g</td><td>Einsichtsrecht</td><td>Patient darf seine Akte einsehen und Kopien erhalten</td></tr>
+<tr><td>630h</td><td>Beweislast</td><td>Bei grobem Behandlungsfehler <strong>Beweislastumkehr</strong> zu Lasten der Einrichtung</td></tr>
+<tr><td>276</td><td>Fahrlässigkeit</td><td>Außerachtlassen der erforderlichen Sorgfalt begründet Haftung</td></tr>
+<tr><td>280</td><td>Schadensersatz</td><td>Bei Pflichtverletzung aus dem Behandlungs- oder Heimvertrag</td></tr>
+</table>
+
+<h3>BGB – Selbstbestimmung, Betreuung und Sorgerecht</h3>
+<table>
+<tr><th>§</th><th>Inhalt</th><th>Wichtig</th></tr>
+<tr><td>1827</td><td>Patientenverfügung</td><td>Wirkt erst bei Einwilligungsunfähigkeit; muss auf die eingetretene Situation passen</td></tr>
+<tr><td>1358</td><td>Ehegattenvertretungsrecht</td><td>Seit 2023: Vertretung in Gesundheitsangelegenheiten für <strong>maximal sechs Monate</strong>, nur wenn keine Vollmacht und keine Betreuung besteht</td></tr>
+<tr><td>1814 ff.</td><td>Rechtliche Betreuung</td><td>Seit der Reform 2023; Betreuer entscheidet nur in den gerichtlich zugewiesenen Aufgabenkreisen. Vorrang der Unterstützung vor der Vertretung</td></tr>
+<tr><td>1831</td><td>Freiheitsentziehende Maßnahmen bei Betreuten</td><td>Vormals §1906; Genehmigung des Betreuungsgerichts erforderlich</td></tr>
+<tr><td>1626 ff.</td><td>Elterliche Sorge</td><td>Personensorge umfasst die Gesundheitsfürsorge; bei schwerwiegenden Eingriffen Einwilligung beider Sorgeberechtigter</td></tr>
+<tr><td>1666</td><td>Kindeswohlgefährdung</td><td>Gericht kann in das Sorgerecht eingreifen; Meldeweg über §8a SGB VIII</td></tr>
+</table>
+<div class="box br"><b>Häufiger Prüfungsfehler</b>Angehörige haben <strong>kein</strong> automatisches Entscheidungsrecht. Ohne Vollmacht, Betreuung oder das befristete Ehegattenrecht entscheidet niemand aus der Familie. Liegt keine Verfügung vor, ist der <strong>mutmaßliche Wille</strong> zu ermitteln – Angehörige sind dabei Zeugen des Willens, nicht Entscheider.</div>
+
+<h3>StGB – Strafrecht in der Pflege</h3>
+<table>
+<tr><th>§</th><th>Tatbestand</th><th>Pflegebeispiel</th></tr>
+<tr><td>203</td><td>Verletzung von Privatgeheimnissen</td><td>Auskunft an Angehörige ohne Einwilligung, Flurgespräch, unbefugte Akteneinsicht</td></tr>
+<tr><td>222</td><td>Fahrlässige Tötung</td><td>Tödlicher Medikationsfehler, Sturz mit Todesfolge</td></tr>
+<tr><td>223</td><td>Körperverletzung</td><td>Pflege gegen den erklärten Willen, Zwangsduschen, grobe Handgriffe</td></tr>
+<tr><td>229</td><td>Fahrlässige Körperverletzung</td><td>Sturz durch unterlassene Sicherung, Verbrühung, Dekubitus durch unterlassene Prophylaxe</td></tr>
+<tr><td>239</td><td>Freiheitsberaubung</td><td>Bettgitter oder Gurt ohne richterliche Genehmigung, abgeschlossene Zimmertür</td></tr>
+<tr><td>267</td><td>Urkundenfälschung</td><td>Dokumentation nachträglich verändern, fremdes Handzeichen, nicht erbrachte Leistung abzeichnen</td></tr>
+<tr><td>323c</td><td>Unterlassene Hilfeleistung</td><td>Notfall nicht melden, keine Erstmaßnahmen einleiten</td></tr>
+</table>
+<h4>Zulässige Durchbrechungen der Schweigepflicht</h4>
+<ul>
+<li>Einwilligung des Patienten</li>
+<li>Gesetzliche Meldepflichten – Infektionsschutzgesetz, §8a SGB VIII</li>
+<li>Rechtfertigender Notstand nach §34 StGB</li>
+<li>Weitergabe innerhalb des Behandlungsteams, soweit für die Versorgung erforderlich</li>
+</ul>
+
+<h3>Sozialgesetzbücher</h3>
+<table>
+<tr><th>§</th><th>Inhalt</th></tr>
+<tr><td>SGB V §20</td><td>Primärprävention und Gesundheitsförderung</td></tr>
+<tr><td>SGB V §37</td><td>Häusliche Krankenpflege – Behandlungspflege auf Verordnung</td></tr>
+<tr><td>SGB V §37b</td><td>SAPV – spezialisierte ambulante Palliativversorgung</td></tr>
+<tr><td>SGB V §39</td><td>Krankenhausbehandlung; Abs. 1a Entlassmanagement</td></tr>
+<tr><td>SGB XI §7a</td><td>Pflegeberatung; §7c Pflegestützpunkte</td></tr>
+<tr><td>SGB XI §14/15</td><td>Pflegebedürftigkeit und Pflegegrade nach dem NBA</td></tr>
+<tr><td>SGB XI §36</td><td>Pflegesachleistung durch ambulanten Dienst</td></tr>
+<tr><td>SGB XI §37</td><td>Pflegegeld für selbst beschaffte Pflege</td></tr>
+<tr><td>SGB XI §39</td><td>Verhinderungspflege</td></tr>
+<tr><td>SGB XI §41 / §42</td><td>Tages- und Nachtpflege / Kurzzeitpflege</td></tr>
+<tr><td>SGB XI §43</td><td>Vollstationäre Pflege</td></tr>
+<tr><td>SGB XI §45 / §45b</td><td>Pflegekurse für Angehörige / Entlastungsbetrag</td></tr>
+<tr><td>SGB VIII §8a</td><td>Schutzauftrag bei Kindeswohlgefährdung</td></tr>
+</table>
+
+<h3>Pflegegrade und NBA-Module</h3>
+<table>
+<tr><th>Modul</th><th>Bereich</th><th>Gewichtung</th></tr>
+<tr><td>1</td><td>Mobilität</td><td>10 %</td></tr>
+<tr><td>2</td><td>Kognitive und kommunikative Fähigkeiten</td><td rowspan="2">15 % – nur der höhere Wert zählt</td></tr>
+<tr><td>3</td><td>Verhaltensweisen und psychische Problemlagen</td></tr>
+<tr><td>4</td><td>Selbstversorgung</td><td>40 %</td></tr>
+<tr><td>5</td><td>Umgang mit krankheits- und therapiebedingten Anforderungen</td><td>20 %</td></tr>
+<tr><td>6</td><td>Gestaltung des Alltagslebens und sozialer Kontakte</td><td>15 %</td></tr>
+</table>
+<p style="font-size:14px">Pflegegrad 1 ab 12,5 · PG 2 ab 27 · PG 3 ab 47,5 · PG 4 ab 70 · PG 5 ab 90 Punkte</p>
+
+<h3>Pflege-Charta</h3>
+<table>
+<tr><th>Art.</th><th>Inhalt</th></tr>
+<tr><td>1</td><td>Selbstbestimmung und Hilfe zur Selbsthilfe</td></tr>
+<tr><td>2</td><td>Körperliche und seelische Unversehrtheit, Freiheit und Sicherheit</td></tr>
+<tr><td>3</td><td>Privatheit</td></tr>
+<tr><td>4</td><td>Pflege, Betreuung und Behandlung</td></tr>
+<tr><td>5</td><td>Information, Beratung und Aufklärung</td></tr>
+<tr><td>6</td><td>Kommunikation, Wertschätzung und Teilhabe an der Gesellschaft</td></tr>
+<tr><td>7</td><td>Religion, Kultur und Weltanschauung</td></tr>
+<tr><td>8</td><td>Palliative Begleitung, Sterben und Tod</td></tr>
+</table>
+
+<h3>Qualität sichern (IV.1)</h3>
+<ul>
+<li><strong>Donabedian</strong>: Strukturqualität (womit?) · Prozessqualität (wie?) · Ergebnisqualität (was kommt heraus?)</li>
+<li><strong>PDCA-Zyklus</strong>: Plan – Do – Check – Act</li>
+<li><strong>Expertenstandards des DNQP</strong>: Dekubitusprophylaxe, Sturzprophylaxe, Schmerzmanagement, Ernährungsmanagement, Förderung der Harnkontinenz, chronische Wunden, Entlassungsmanagement, Beziehungsgestaltung bei Demenz, Mundgesundheit, Erhaltung und Förderung der Mobilität</li>
+<li>Qualitätsprüfungen des Medizinischen Dienstes, Pflegevisite, Qualitätszirkel, interne Audits</li>
+</ul>
+
+<h3>Versorgungskontexte und Systemzusammenhänge (IV.2)</h3>
+<ul>
+<li>Versorgungsformen: ambulant, teilstationär, vollstationär, Kurzzeit- und Verhinderungspflege, Reha, Hospiz und SAPV</li>
+<li><strong>Ökonomische Prinzipien</strong>: wirtschaftlicher Materialeinsatz, sinnvolle Bevorratung, Wirtschaftlichkeitsgebot §12 SGB V</li>
+<li><strong>Ökologische Prinzipien</strong>: Abfalltrennung, Reduktion von Einwegmaterial wo vertretbar, Energie- und Wasserverbrauch, Arzneimittelentsorgung</li>
+<li>Spannungsfeld Wirtschaftlichkeit gegen fachlichen Anspruch – begründete Prioritätensetzung statt stillschweigender Absenkung des Standards</li>
+</ul>
+
+<h3>Betäubungsmittelrecht und Infektionsschutz</h3>
+<ul>
+<li><strong>BtMG und BtMVV</strong>: BTM-Buch führen, Vier-Augen-Prinzip, verschlossene und fest verankerte Aufbewahrung, Bestandskontrolle, dokumentierte Vernichtung, sofortige Meldung bei Verlust</li>
+<li><strong>Infektionsschutzgesetz</strong>: Meldepflichten, verpflichtender Hygieneplan, RKI- und KRINKO-Empfehlungen als fachlicher Standard, Belehrung nach §43 IfSG</li>
+</ul>
+<div class="src">Quellen: Grundgesetz · BGB §§276, 280, 630a–630h, 1358, 1626 ff., 1666, 1814 ff., 1827, 1831 · StGB §§34, 203, 216, 222, 223, 229, 239, 267, 323c · SGB V, XI, VIII · BtMG und BtMVV · Infektionsschutzgesetz · Pflege-Charta, BMFSFJ · DNQP Expertenstandards · I care Pflege, Thieme – Kapitel Rechtliche Grundlagen und Ethik · Elsevier PFLEGEN Grundlagen und Interventionen</div>
+</div></div>
+
+<div class="c"><div class="ch"><span class="num">V</span><h2>KB V – Wissenschaft und Berufsethik</h2><span class="arw">▶</span></div><div class="cb">
+<div class="tags"><span class="tag k5">V.1</span><span class="tag k5">V.2</span></div>
+
+<h3>Pflegetheorien und Modelle</h3>
+<table>
+<tr><th>Theoretikerin</th><th>Modell</th><th>Kernaussage</th></tr>
+<tr><td>Krohwinkel</td><td>ABEDL – 13 Bereiche</td><td>Ganzheitlich-fördernde Prozesspflege, ressourcenorientiert; Rahmenmodell für Pflegeplanung und SIS</td></tr>
+<tr><td>Orem</td><td>Selbstpflegedefizit-Theorie</td><td>Pflege wird nötig, wenn der Selbstpflegebedarf die Selbstpflegekompetenz übersteigt. Drei Systeme: vollständig kompensatorisch, teilweise kompensatorisch, unterstützend-edukativ</td></tr>
+<tr><td>Peplau</td><td>Interpersonale Beziehung</td><td>Vier Phasen: Orientierung, Identifikation, Nutzung, Ablösung</td></tr>
+<tr><td>Roper, Logan, Tierney</td><td>12 Lebensaktivitäten</td><td>Abhängigkeits-Unabhängigkeits-Kontinuum über die Lebensspanne</td></tr>
+<tr><td>Corbin &amp; Strauss</td><td>Trajektmodell</td><td>Chronische Krankheit als gestaltbare Verlaufskurve mit Phasen</td></tr>
+<tr><td>Friedemann</td><td>Systemisches Gleichgewicht</td><td>Familie als System: Stabilität, Zusammenhalt, Wachstum, Spiritualität – Basis familienorientierter Pflege</td></tr>
+<tr><td>Henderson</td><td>14 Grundbedürfnisse</td><td>Pflege übernimmt, was der Mensch bei Kraft, Willen und Wissen selbst tun würde, und fördert die Unabhängigkeit</td></tr>
+</table>
+
+<h3>Pflegekonzepte</h3>
+<h4>Kinästhetik – 6 Konzepte</h4>
+<ul>
+<li>Interaktion · funktionale Anatomie · menschliche Bewegung · Anstrengung · menschliche Funktion · Umgebung</li>
+<li>Ziel: Bewegung anbahnen und führen statt heben – entlastet Patient und Pflegende</li>
+</ul>
+<h4>Basale Stimulation nach Fröhlich und Bienstein</h4>
+<ul>
+<li>Grundstimulationen: <strong>somatisch</strong> (Körpergrenzen), <strong>vestibulär</strong> (Lage und Gleichgewicht), <strong>vibratorisch</strong> (Tiefenwahrnehmung)</li>
+<li>Weitere: oral, olfaktorisch, auditiv, visuell, taktil-haptisch</li>
+<li>Immer mit <strong>Initialberührung</strong> beginnen und an derselben Stelle beenden; Biografiebezug nutzen</li>
+<li>Zielgruppen: Wachkoma, schwere Demenz, beatmete Patienten, Frühgeborene, Menschen nach Apoplex</li>
+</ul>
+<h4>Bobath-Konzept</h4>
+<ul>
+<li>Neurophysiologisches <strong>24-Stunden-Konzept</strong>, gilt auch in der Pflege</li>
+<li>Betroffene Seite bewusst einbeziehen: von dort ansprechen, lagern, unterstützen</li>
+<li>Normale Bewegungsmuster anbahnen, pathologische Muster und Spastik hemmen</li>
+<li>Anwendung bei Apoplex, Multipler Sklerose, Parkinson, Zerebralparese</li>
+</ul>
+<h4>Validation und Biografiearbeit</h4>
+<ul>
+<li>Validation nach Feil: Gefühle des Menschen mit Demenz annehmen statt die Realität korrigieren</li>
+<li>Biografiearbeit: Verhalten aus der Lebensgeschichte verstehen, Rituale und Vorlieben nutzen</li>
+<li>Beides sind zentrale Zugänge, um Unruhe zu verstehen – und damit Alternativen zu FEM</li>
+</ul>
+
+<h3>Pflegeorganisationsformen</h3>
+<table>
+<tr><th>Form</th><th>Prinzip</th><th>Bewertung</th></tr>
+<tr><td>Funktionspflege</td><td>Aufteilung nach Tätigkeiten</td><td>Schnell und routiniert, aber unpersönlich und nicht ganzheitlich</td></tr>
+<tr><td>Bereichspflege</td><td>Zuständigkeit für einen räumlichen Bereich</td><td>Praktikabel, Kontinuität nur innerhalb der Schicht</td></tr>
+<tr><td>Gruppen- oder Teampflege</td><td>Ein Team versorgt gemeinsam eine Patientengruppe</td><td>Gegenseitige Unterstützung, Verantwortlichkeiten können verschwimmen</td></tr>
+<tr><td>Bezugspflege</td><td>Feste Bezugsperson für den Patienten</td><td>Vertrauen und Kontinuität, personalintensiv</td></tr>
+<tr><td>Primary Nursing</td><td>Eine Primary Nurse verantwortet den gesamten Pflegeprozess von Aufnahme bis Entlassung</td><td>Höchste Verantwortungsklarheit, entspricht §4 PflBG am besten</td></tr>
+</table>
+
+<h3>Evidence Based Nursing</h3>
+<ul>
+<li>Vier Säulen: <strong>externe Evidenz</strong> aus Forschung · <strong>pflegerische Expertise</strong> · <strong>Präferenzen des Patienten</strong> · <strong>verfügbare Ressourcen</strong></li>
+<li>Ablauf: Auftrag klären → Fragestellung formulieren → Literatur recherchieren → Evidenz bewerten → Umsetzung planen → Ergebnis evaluieren</li>
+<li>Expertenstandards konkretisieren, was ein „allgemein anerkannter fachlicher Standard" nach §630a BGB ist</li>
+</ul>
+
+<h3>ICN-Ethikkodex</h3>
+<p>Vier Grundverantwortungen: Gesundheit <strong>fördern</strong> · Krankheit <strong>verhüten</strong> · Gesundheit <strong>wiederherstellen</strong> · Leiden <strong>lindern</strong>.</p>
+<table>
+<tr><th>Handlungsbereich</th><th>Kernaussage</th></tr>
+<tr><td>Pflegende und Menschen mit Pflegebedarf</td><td>Menschenwürde, Selbstbestimmung, Vertraulichkeit, kultursensibles Handeln</td></tr>
+<tr><td>Pflegende und die Berufsausübung</td><td>Kompetenz erhalten, Verantwortung übernehmen, Grenzen kennen, unethische Aufgaben ablehnen</td></tr>
+<tr><td>Pflegende und die Profession</td><td>Mitwirkung an Standards, Forschung, Arbeitsbedingungen, Berufspolitik</td></tr>
+<tr><td>Pflegende und globale Gesundheit</td><td>Menschenrechte, Gesundheitsgerechtigkeit, Nachhaltigkeit</td></tr>
+</table>
+<p><strong>Vier ethische Prinzipien</strong> nach Beauchamp und Childress: Autonomie · Fürsorge · Nicht-Schaden · Gerechtigkeit. Bei einem <strong>Dilemma</strong> stehen zwei Prinzipien gegeneinander – Lösung über die ethische Fallbesprechung im Team, nie im Alleingang.</p>
+
+<h3>Gewalt in der Pflege</h3>
+<table>
+<tr><th>Form</th><th>Beispiel</th></tr>
+<tr><td>Körperlich</td><td>Grobe Handgriffe, Zwangsduschen, unnötige Fixierung</td></tr>
+<tr><td>Psychisch</td><td>Ignorieren, Drohen, Infantilisieren, Bloßstellen</td></tr>
+<tr><td>Sexualisiert</td><td>Unangemessene Berührung, Missachtung der Intimsphäre</td></tr>
+<tr><td>Finanziell</td><td>Bestehlen, zur Schenkung drängen</td></tr>
+<tr><td>Vernachlässigung</td><td>Klingel nicht beantworten, Trinken nicht anreichen, Inkontinenz nicht versorgen</td></tr>
+<tr><td>Strukturell</td><td>Starre Abläufe ohne Wahlmöglichkeit, Zeitmangel, Fließbandpflege</td></tr>
+</table>
+<p><strong>Prävention:</strong> offene Fehler- und Beschwerdekultur, Supervision, Schulung, ausreichende Personalausstattung, Gewaltschutzkonzept, bekannte Meldewege.</p>
+
+<h3>Selbstfürsorge und Burn-out</h3>
+<ul>
+<li><strong>Phasen nach Edelwich und Brodsky</strong>: idealistische Begeisterung → Stagnation → Frustration → Apathie → Burn-out beziehungsweise Intervention</li>
+<li><strong>Warnzeichen</strong>: Erschöpfung, Zynismus, Distanzverlust oder Überidentifikation, Schlafstörungen, häufige Infekte, steigende Fehlzeiten und Fehler</li>
+<li><strong>Persönliche Strategien</strong>: Grenzen setzen, Pausen einhalten, Supervision und kollegiale Beratung, soziale Kontakte, Bewegung, bei anhaltenden Symptomen professionelle Hilfe</li>
+<li><strong>Salutogenese nach Antonovsky</strong>: Kohärenzgefühl aus Verstehbarkeit, Handhabbarkeit und Sinnhaftigkeit</li>
+<li><strong>Strukturell</strong>: Personalbemessung, verlässliche Dienstpläne, wertschätzende Führung, betriebliches Gesundheitsmanagement</li>
+</ul>
+
+<h3>Professionalisierung und berufliches Selbstverständnis</h3>
+<ul>
+<li><strong>Historischer Weg</strong>: christlich geprägte Liebestätigkeit und Ordenspflege → Mutterhausdiakonie → Assistenzberuf der Medizin → Akademisierung ab den 1990er Jahren → <strong>Generalistik 2020</strong> mit Vorbehaltsaufgaben nach §4 PflBG</li>
+<li><strong>Merkmale einer Profession</strong>: eigene wissenschaftliche Wissensbasis, Vorbehaltsaufgaben, verbindlicher Ethikkodex, geregelte Ausbildung und Fortbildungspflicht, berufliche Selbstverwaltung</li>
+<li><strong>Professionelle Nähe und Distanz</strong>: empathisch, aber nicht grenzenlos; keine privaten Dienstleistungen für Patienten</li>
+<li><strong>Fort- und Weiterbildung</strong>: Fortbildungspflicht, Fachweiterbildungen (Intensiv und Anästhesie, Psychiatrie, Palliativ, Onkologie, Praxisanleitung, Leitung), Pflegestudium, Advanced Practice Nursing</li>
+<li>Weiterbildung ist ein Instrument der <strong>Personalentwicklung</strong>, keine Belohnung für Wohlverhalten</li>
+</ul>
+<div class="src">Quellen: I care Pflege, Thieme – Kapitel Pflegetheorien und -modelle, Pflegekonzepte, Berufliches Selbstverständnis, Ethik · Elsevier PFLEGEN Grundlagen und Interventionen · ICN-Ethikkodex für Pflegefachpersonen, deutsche Fassung DBfK · Beauchamp &amp; Childress · Edelwich &amp; Brodsky · Antonovsky, Salutogenese · DNQP · ZQP Report Gewaltprävention in der Pflege</div>
+</div></div>
+</div>
+
+</main>
+
+<script>
+document.querySelectorAll('nav button').forEach(b=>{b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');document.getElementById('tab-'+b.dataset.t).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});}});
+document.querySelectorAll('.ch').forEach(h=>{h.onclick=()=>h.parentElement.classList.toggle('open')});
+function all(o){document.querySelectorAll('.tab.on .c').forEach(c=>o?c.classList.add('open'):c.classList.remove('open'))}
+const q=document.getElementById('q');let t;
+q.oninput=()=>{clearTimeout(t);t=setTimeout(()=>{
+  const s=q.value.trim().toLowerCase();
+  document.querySelectorAll('.c').forEach(c=>{
+    if(!s){c.style.display='';c.classList.remove('open');return}
+    const hit=c.textContent.toLowerCase().includes(s);
+    c.style.display=hit?'':'none';if(hit)c.classList.add('open');});
+  if(s)for(const b of document.querySelectorAll('nav button')){
+    const tb=document.getElementById('tab-'+b.dataset.t);
+    if([...tb.querySelectorAll('.c')].some(c=>c.style.display!=='none')){b.click();break}}
+},250)};
+</script>
+</body>
+</html>
